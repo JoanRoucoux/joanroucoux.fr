@@ -31,6 +31,8 @@ export class PageHead {
     this.title.set(title);
     this.#title.setTitle(title);
     this.#setMeta('property', 'og:title', title);
+    this.#setMeta('property', 'og:type', 'website');
+    this.#setMeta('property', 'og:site_name', 'Joan Roucoux');
     this.#setMeta('property', 'og:locale', LOCALES[lang]);
     this.#setMeta('name', 'twitter:card', 'summary_large_image');
     this.#setMeta('property', 'og:image', `${SITE_ORIGIN}/social/og-${lang}.png`);

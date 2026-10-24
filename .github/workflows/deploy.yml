@@ -133,7 +133,7 @@ jobs:
       - name: Check the pages are served
         run: |
           for path in / /en; do
-            code=$(curl -sS --retry 10 --retry-all-errors --retry-delay 3 -o /dev/null -w '%{http_code}' "https://joanroucoux.fr${path}")
+            code=$(curl -sS --resolve "joanroucoux.fr:443:${DEPLOY_HOST}" --retry 10 --retry-all-errors --retry-delay 3 -o /dev/null -w '%{http_code}' "https://joanroucoux.fr${path}")
             echo "GET ${path} -> ${code}"
             [ "$code" = "200" ] || exit 1
           done

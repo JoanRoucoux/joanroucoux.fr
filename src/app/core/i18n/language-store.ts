@@ -22,8 +22,4 @@ export class LanguageStore {
       this.#document.documentElement.lang = this.activeLang();
     });
   }
-
-  setActiveLang(lang: SiteLang): void {
-    this.#translocoService.setActiveLang(lang);
-  }
 }

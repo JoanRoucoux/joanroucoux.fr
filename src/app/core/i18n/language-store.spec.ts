@@ -16,16 +16,15 @@ describe('LanguageStore', () => {
     });
   });
 
-  it('should switch the active language and update <html lang>', () => {
+  it('should follow the active language and update <html lang>', () => {
     const service = TestBed.inject(LanguageStore);
     const translocoService = TestBed.inject(TranslocoService);
     const document = TestBed.inject(DOCUMENT);
 
-    service.setActiveLang('fr');
-    translocoService.langChanges$.subscribe();
+    translocoService.setActiveLang('en');
     TestBed.tick();
 
-    expect(service.activeLang()).toBe('fr');
-    expect(document.documentElement.lang).toBe('fr');
+    expect(service.activeLang()).toBe('en');
+    expect(document.documentElement.lang).toBe('en');
   });
 });

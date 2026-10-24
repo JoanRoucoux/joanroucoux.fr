@@ -42,14 +42,14 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Check the prerendered pages
-        run: pnpm run check:prerender
-
       - name: Check internal links and assets
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
           args: --offline --no-progress --base-url ${{ github.workspace }}/dist/joanroucoux-fr/browser 'dist/joanroucoux-fr/browser/**/*.html'
           fail: true
+
+      - name: Check the prerendered pages
+        run: pnpm run check:prerender
 
   e2e:
     runs-on: ubuntu-latest

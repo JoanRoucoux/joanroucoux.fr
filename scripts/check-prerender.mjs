@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = 'dist/joanroucoux-fr/browser';
@@ -37,6 +37,13 @@ if (!/<h1[^>]*>\s*Joan Roucoux\s*<\/h1>/.test(home)) fail('index.html has no h1 
 const english = read('en/index.html');
 expectIncludes('en/index.html', english, '<html lang="en"');
 expectIncludes('en/index.html', english, '<title>Joan Roucoux, freelance full stack developer</title>');
+
+expectIncludes('index.html', home, 'Développeur full stack freelance');
+expectIncludes('en/index.html', english, 'Freelance full stack developer');
+
+for (const image of ['social/og-fr.png', 'social/og-en.png']) {
+  if (!existsSync(join(root, image))) fail(`${image} is missing`);
+}
 
 for (const [path, html] of [
   ['index.html', home],
