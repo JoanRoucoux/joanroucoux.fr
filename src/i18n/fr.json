@@ -1,8 +1,16 @@
 {
-  "pageTitle": {
-    "site": "Joan Roucoux",
-    "legal": "Mentions légales",
-    "notFound": "Page introuvable"
+  "meta": {
+    "home": {
+      "title": "Joan Roucoux, développeur full-stack freelance",
+      "description": "Joan Roucoux, développeur full-stack freelance : React, Angular, Java et Spring Boot, Node.js."
+    },
+    "legal": {
+      "title": "Mentions légales | Joan Roucoux",
+      "description": "Mentions légales du site de Joan Roucoux, développeur full-stack freelance."
+    },
+    "notFound": {
+      "title": "Page introuvable | Joan Roucoux"
+    }
   },
   "notFound": {
     "title": "Page introuvable",

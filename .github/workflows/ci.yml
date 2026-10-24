@@ -43,6 +43,9 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Check the prerendered pages
+        run: pnpm run check:prerender
+
   e2e:
     runs-on: ubuntu-latest
     steps:
@@ -92,7 +95,7 @@ jobs:
             sleep 2
           done
           [ "$(docker inspect -f '{{.State.Health.Status}}' web)" = healthy ]
-          curl -sf http://localhost:8080/users/1 | grep -q "<app-root>"
+          curl -sf http://localhost:8080/users/1 | grep -q "<app-root"
           curl -sfI http://localhost:8080/ | tr -d '\r' | grep -qi "^content-security-policy:.*trusted-types angular"
           curl -sfI http://localhost:8080/i18n/en.json | tr -d '\r' | grep -qi "^cache-control: no-cache"
           [ "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/missing.js)" = 404 ]

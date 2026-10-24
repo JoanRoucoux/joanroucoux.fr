@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { AppTitleStrategy } from '@core/i18n/title-strategy';
+import { LanguageStore } from '@core/i18n/language-store';
+import { PageHead } from '@core/seo/page-head';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,9 @@ import { AppTitleStrategy } from '@core/i18n/title-strategy';
   templateUrl: './app.html',
 })
 export class App {
-  #titleStrategy = inject(AppTitleStrategy);
+  protected readonly pageTitle = inject(PageHead).title;
 
-  protected readonly pageTitle = this.#titleStrategy.pageTitle;
+  constructor() {
+    inject(LanguageStore);
+  }
 }

@@ -1,8 +1,16 @@
 {
-  "pageTitle": {
-    "site": "Joan Roucoux",
-    "legal": "Legal notice",
-    "notFound": "Page not found"
+  "meta": {
+    "home": {
+      "title": "Joan Roucoux, freelance full-stack developer",
+      "description": "Joan Roucoux, freelance full-stack developer: React, Angular, Java and Spring Boot, Node.js."
+    },
+    "legal": {
+      "title": "Legal notice | Joan Roucoux",
+      "description": "Legal notice of the website of Joan Roucoux, freelance full-stack developer."
+    },
+    "notFound": {
+      "title": "Page not found | Joan Roucoux"
+    }
   },
   "notFound": {
     "title": "Page not found",

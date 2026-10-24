@@ -10,22 +10,24 @@ Package manager: **pnpm** (version pinned in the `packageManager` field of packa
 
 ## Commands
 
-| Command                  | Purpose                                         |
-| ------------------------ | ----------------------------------------------- |
-| `pnpm install`           | Install deps                                    |
-| `pnpm start`             | Dev server                                      |
-| `pnpm run test:coverage` | Unit tests with coverage                        |
-| `pnpm run e2e`           | Playwright end-to-end tests                     |
-| `pnpm run lint`          | ESLint (includes Sheriff module-boundary rules) |
-| `pnpm run format:check`  | Prettier check                                  |
+| Command                    | Purpose                                                    |
+| -------------------------- | ---------------------------------------------------------- |
+| `pnpm install`             | Install deps                                               |
+| `pnpm start`               | Dev server                                                 |
+| `pnpm run test:coverage`   | Unit tests with coverage                                   |
+| `pnpm run e2e`             | Playwright end-to-end tests                                |
+| `pnpm run lint`            | ESLint (includes Sheriff module-boundary rules)            |
+| `pnpm run format:check`    | Prettier check                                             |
+| `pnpm run check:prerender` | Checks the prerendered HTML in `dist/` (run after `build`) |
 
-Before considering a change done, run the same pipeline as CI: `format:check`, `lint`, `test:coverage`, `build`, `e2e`.
+Before considering a change done, run the same pipeline as CI: `format:check`, `lint`, `test:coverage`, `build`, `check:prerender`, `e2e`.
 
 ## Architecture
 
-- `src/app/core/`: global infrastructure (i18n, logger, 404).
+- `src/app/core/`: global infrastructure (i18n, logger, 404, `seo/page-head.ts`).
+- Prerendering: `outputMode: "static"` in `angular.json` with `src/main-server.ts`, `app-config-server.ts` and `app-routes-server.ts` (every page `RenderMode.Prerender`, `**` `RenderMode.Client`). There is no server, no `server.ts`, no express. `scripts/check-prerender.mjs` reads the output and fails on a missing page, a wrong `lang` or title, a `noindex` gap, a leftover `[[`, a Google Fonts URL, an inline event handler or an executable inline script.
 - `src/app/features/<feature>/`: one folder per business feature, containing one folder per screen plus `<feature>-routes.ts`. A screen folder is named after its route segment (`list/`, `detail/`, `create/`) and holds everything that serves only that screen: the page, its store if it has one, its dialogs. A feature with a single screen keeps the page at its root (`features/site/site-page.ts`). No `pages/` or `services/` folders: grouping is by domain, not by technical type.
-- **`<feature>-routes.ts` is the feature's routing entry point**: every feature has one, whatever its number of screens, and it owns the feature's titles, guards and `provideTranslocoScope`. Its paths come from the feature's contract (`contract/<feature>-paths.ts`), never from string literals. `app-routes.ts` imports a feature's routes file and its contract, nothing else: it never reaches for a page directly. A feature is then relocatable (to another app, to another MFE) by moving its folder and changing those imports.
+- **`<feature>-routes.ts` is the feature's routing entry point**: every feature has one, whatever its number of screens, and it owns the feature's guards and `provideTranslocoScope`. Its paths come from the feature's contract (`contract/<feature>-paths.ts`), never from string literals. `app-routes.ts` imports a feature's routes file and its contract, nothing else: it never reaches for a page directly. A feature is then relocatable (to another app, to another MFE) by moving its folder and changing those imports.
 - `src/app/shared/`: reusable presentation/test helpers, imports neither `core` nor `features`.
 - Module boundaries are enforced at lint time by Sheriff ([sheriff.config.ts](sheriff.config.ts)): `features` -> `core`/`shared`; `core` -> `shared`; features import each other only through `contract/`; `core` may import contracts; contracts import nothing from the app. Modules are barrel-less: no `index.ts`, import files directly; private files go in an `internal/` subdirectory.
 - Import aliases: `@core/*`, `@features/*`, `@shared/*`, `@environments/*`.
@@ -45,7 +47,7 @@ Before considering a change done, run the same pipeline as CI: `format:check`, `
 1. Create `<feature>/<screen>/` where `<screen>` is the route segment, with `<entity>-<screen>-page.ts` (+ `.html`, `.spec.ts`), class `<Entity><Screen>Page`, selector `app-<entity>-<screen>-page`. **The folder carries the short name, the files carry the full one**: `orders/list/order-list-page.ts`, never `orders/order-list-page/order-list-page.ts`.
 2. Name the screen after what it is, not after the CRUD operation, and stick to `list`, `detail`, `create`, `edit`, `form`. One screen handling both creation and update is `form/<entity>-form-page.ts`, with the mode derived from the presence of the route parameter.
 3. If the page keeps state beyond a few local signals, move it to a store: see "Where code goes in a feature" and "State and data access" below.
-4. Wire the page into `<feature>-routes.ts`, with a `pageTitle.<key>` title.
+4. Wire the page into `<feature>-routes.ts`, with `data: { lang, page }` (`pageRoute()` in `site-routes.ts`); `PageHead` derives the title and metadata from `page`.
 5. Add its translations under the feature's i18n scope (`src/i18n/<feature>/<lang>.json`), keyed by screen (`<feature>.<screen>.*`): for example `site.hero.*`.
 
 ## Where code goes in a feature
@@ -95,9 +97,9 @@ Before considering a change done, run the same pipeline as CI: `format:check`, `
 ## i18n (Transloco)
 
 - The language comes from the route, never from the browser or a cookie: `/` and `/mentions-legales` are French, `/en` and `/en/legal` are English. French is the default (`DEFAULT_LANG` in `core/i18n/site-lang.ts`). No browser-language detection, no persisted choice, no cookie.
-- Each page route carries `data: { lang }` and `resolve: { lang: langResolver }`: the resolver loads that language, then activates it. The `**` route renders the 404 in French. The language switch is a plain link to the counterpart URL (`counterpartUrl`).
+- Each page route carries `data: { lang }` and `resolve: { lang: langResolver }`: the resolver loads that language, then activates it. The `**` and `404` routes render the 404 in French (`data.page` is `not-found`); `404` exists so that it is prerendered into `404/index.html`. The language switch is a plain link to the counterpart URL (`counterpartUrl`).
 - Translations are bundled, not fetched: `TranslocoBundledLoader` maps each path to a dynamic `import()` of `src/i18n/<path>.json`, so there is no `HttpClient` and prerendering works. A new file needs a line in that map.
-- The global `src/i18n/<lang>.json` files only hold keys needed synchronously before any scope loads: `pageTitle.*` (used by the title strategy on navigation) and the 404 page. The default language is loaded by an app initializer: keep them minimal.
+- The global `src/i18n/<lang>.json` files only hold keys needed synchronously before any scope loads: `meta.*` (titles and description read by `PageHead`) and the 404 page. The default language is loaded by an app initializer: keep them minimal.
 - Each feature has a lazy scope in `src/i18n/<feature>/<lang>.json`, declared with `provideTranslocoScope('<feature>')` in the feature's routes. Keys are prefixed with the scope (`site.hero.title`).
 - A page route resolves `preloadScope('<feature>')` on a child of the route that resolves `langResolver`: parents resolve first, so the scope is loaded for the new language.
 - Every key must exist in both `fr` and `en`.
@@ -124,7 +126,10 @@ Before considering a change done, run the same pipeline as CI: `format:check`, `
 - Dependabot never bumps the Node major in the Dockerfile: it follows `.nvmrc` and the CI `node-version`, changed together by hand.
 - The app initializer in `transloco-provider.ts` waits for the default language to load: without it the first paint shows missing-translation warnings.
 - jsdom 30 ships `HTMLDialogElement` without `showModal` and `close`, and implements neither the Esc handling of `<dialog>` nor the `cancel` event it fires: specs dispatch it by hand and the e2e suite covers the real behavior.
-- `LanguageStore` keeps the `lang` attribute on `<html>` in sync so assistive technologies announce the right language, and `AppTitleStrategy` re-translates the title whenever the active language changes.
+- `LanguageStore` keeps the `lang` attribute on `<html>` in sync so assistive technologies announce the right language: `App` injects it so that a page which never reads it (the legal notice) still gets the right `lang`, in the prerendered HTML too.
+- `PageHead` is the only owner of `<title>`, description, canonical, hreflang, Open Graph and robots: routes carry no `title`. `langResolver` calls it with `data.page` once the language is active. The home pages are the only indexable ones.
+- Angular 22 enables incremental hydration by default, and it turns on event replay, which writes an inline `<script>` that the CSP blocks. `app-config.ts` therefore uses `provideClientHydration(withNoIncrementalHydration())`: do not drop it. `check-prerender.mjs` fails on any inline script.
+- The build also writes `index.csr.html` (the client rendered shell for `**`) next to the prerendered pages.
 - `transloco-testing.ts` provides Transloco in unit tests: translations resolve to their key, and scoped keys use the camel-cased scope name.
 - The bundle budget of `angular.json` (500 kB warning, 1 MB error) is loose on purpose: tighten it to the measured size once the UI library is in.
 - A merge made with `GITHUB_TOKEN` triggers no `push` workflow, which is why `dependabot-auto-merge.yml` uses the `DEPENDABOT_MERGE_TOKEN` secret when it exists.

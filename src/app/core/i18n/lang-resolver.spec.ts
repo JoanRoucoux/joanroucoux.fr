@@ -6,6 +6,8 @@ import { TranslocoService } from '@jsverse/transloco';
 import { Subject } from 'rxjs';
 import { vi } from 'vitest';
 
+import { PageHead } from '@core/seo/page-head';
+
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing';
 
 import { langResolver } from './lang-resolver';
@@ -15,7 +17,7 @@ describe('langResolver', () => {
 
   const run = (lang: string): Promise<unknown> =>
     TestBed.runInInjectionContext(() =>
-      langResolver({ data: { lang } } as unknown as ActivatedRouteSnapshot, {} as RouterStateSnapshot),
+      langResolver({ data: { lang, page: 'home' } } as unknown as ActivatedRouteSnapshot, {} as RouterStateSnapshot),
     ) as Promise<unknown>;
 
   beforeEach(() => {
@@ -53,5 +55,13 @@ describe('langResolver', () => {
 
     expect(loadSpy).toHaveBeenCalledWith('en');
     expect(translocoService.getActiveLang()).toBe('en');
+  });
+
+  it('should apply the head of the route page once the language is active', async () => {
+    const applySpy = vi.spyOn(TestBed.inject(PageHead), 'apply');
+
+    await run('en');
+
+    expect(applySpy).toHaveBeenCalledWith('en', 'home');
   });
 });

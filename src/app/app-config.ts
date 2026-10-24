@@ -1,7 +1,7 @@
 import { type ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { TitleStrategy, provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideClientHydration, withNoIncrementalHydration } from '@angular/platform-browser';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
-import { AppTitleStrategy } from '@core/i18n/title-strategy';
 import { provideTranslocoGlobal } from '@core/i18n/transloco-provider';
 
 import { routes } from './app-routes';
@@ -10,7 +10,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),
+    provideClientHydration(withNoIncrementalHydration()),
     provideTranslocoGlobal(),
-    { provide: TitleStrategy, useClass: AppTitleStrategy },
   ],
 };

@@ -18,6 +18,9 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "server": "src/main-server.ts",
+            "outputMode": "static",
+            "ssr": false,
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -82,8 +85,11 @@
             "coverageExclude": [
               "src/index.html",
               "src/main.ts",
+              "src/main-server.ts",
               "src/app/app-config.ts",
+              "src/app/app-config-server.ts",
               "src/app/**/*-routes.ts",
+              "src/app/**/*-routes-server.ts",
               "src/app/**/*-provider.ts",
               "src/environments/**"
             ],
