@@ -1,41 +1,36 @@
-import { provideHttpClient } from '@angular/common/http';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { firstValueFrom } from 'rxjs';
 
-import { TranslocoHttpLoader } from './transloco-loader';
+import en from '../../../i18n/en.json';
+import fr from '../../../i18n/fr.json';
+import siteEn from '../../../i18n/site/en.json';
+import siteFr from '../../../i18n/site/fr.json';
+import { TranslocoBundledLoader } from './transloco-loader';
 
-describe('TranslocoHttpLoader', () => {
-  let loader: TranslocoHttpLoader;
-  let httpTesting: HttpTestingController;
+describe('TranslocoBundledLoader', () => {
+  let loader: TranslocoBundledLoader;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection(), provideHttpClient(), provideHttpClientTesting()],
-    });
-    loader = TestBed.inject(TranslocoHttpLoader);
-    httpTesting = TestBed.inject(HttpTestingController);
+    TestBed.configureTestingModule({ providers: [provideZonelessChangeDetection()] });
+    loader = TestBed.inject(TranslocoBundledLoader);
   });
 
-  afterEach(() => {
-    httpTesting.verify();
+  it('should emit the bundled French translations', async () => {
+    expect(await firstValueFrom(loader.getTranslation('fr'))).toEqual(fr);
   });
 
-  it('should fetch the translation file of the requested language', async () => {
-    const translation = firstValueFrom(loader.getTranslation('fr'));
-
-    httpTesting.expectOne('/i18n/fr.json').flush({ 'pageTitle.sample': 'Exemple' });
-
-    expect(await translation).toEqual({ 'pageTitle.sample': 'Exemple' });
+  it('should emit the bundled English translations', async () => {
+    expect(await firstValueFrom(loader.getTranslation('en'))).toEqual(en);
   });
 
-  it('should fetch a lazy scope with its scoped path', async () => {
-    const translation = firstValueFrom(loader.getTranslation('sample/en'));
+  it('should emit the scoped bundles', async () => {
+    expect(await firstValueFrom(loader.getTranslation('site/fr'))).toEqual(siteFr);
+    expect(await firstValueFrom(loader.getTranslation('site/en'))).toEqual(siteEn);
+  });
 
-    httpTesting.expectOne('/i18n/sample/en.json').flush({ 'list.title': 'Sample' });
-
-    expect(await translation).toEqual({ 'list.title': 'Sample' });
+  it('should error on an unknown path', async () => {
+    await expect(firstValueFrom(loader.getTranslation('de'))).rejects.toThrow('de');
   });
 });

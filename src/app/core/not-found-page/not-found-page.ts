@@ -11,5 +11,5 @@ import { SITE_PATHS } from '@features/site/contract/site-paths';
   templateUrl: './not-found-page.html',
 })
 export class NotFoundPage {
-  protected readonly homePaths = SITE_PATHS;
+  protected readonly homeLink = `/${SITE_PATHS.home.fr}`;
 }

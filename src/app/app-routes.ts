@@ -1,5 +1,7 @@
 import { type Routes } from '@angular/router';
 
+import { langResolver } from '@core/i18n/lang-resolver';
+import { DEFAULT_LANG } from '@core/i18n/site-lang';
 import { NotFoundPage } from '@core/not-found-page/not-found-page';
 
 import { SITE_PATHS } from '@features/site/contract/site-paths';
@@ -14,5 +16,7 @@ export const routes: Routes = [
     path: '**',
     component: NotFoundPage,
     title: 'pageTitle.notFound',
+    data: { lang: DEFAULT_LANG },
+    resolve: { lang: langResolver },
   },
 ];

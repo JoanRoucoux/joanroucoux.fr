@@ -4,6 +4,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 import { TranslocoService } from '@jsverse/transloco';
 
+import { type SiteLang } from '@core/i18n/site-lang';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -11,9 +13,9 @@ export class LanguageStore {
   #translocoService = inject(TranslocoService);
   #document = inject(DOCUMENT);
 
-  readonly activeLang: Signal<string> = toSignal(this.#translocoService.langChanges$, {
+  readonly activeLang = toSignal(this.#translocoService.langChanges$, {
     initialValue: this.#translocoService.getActiveLang(),
-  });
+  }) as Signal<SiteLang>;
 
   constructor() {
     effect(() => {
@@ -21,7 +23,7 @@ export class LanguageStore {
     });
   }
 
-  setActiveLang(lang: string): void {
+  setActiveLang(lang: SiteLang): void {
     this.#translocoService.setActiveLang(lang);
   }
 }

@@ -1,14 +1,23 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import type { Translation, TranslocoLoader } from '@jsverse/transloco';
-import { Observable } from 'rxjs';
+import { Observable, from, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+const BUNDLES: Record<string, () => Promise<{ default: Translation }>> = {
+  fr: () => import('../../../i18n/fr.json'),
+  en: () => import('../../../i18n/en.json'),
+  'site/fr': () => import('../../../i18n/site/fr.json'),
+  'site/en': () => import('../../../i18n/site/en.json'),
+};
 
 @Injectable({ providedIn: 'root' })
-export class TranslocoHttpLoader implements TranslocoLoader {
-  #httpClient = inject(HttpClient);
+export class TranslocoBundledLoader implements TranslocoLoader {
+  getTranslation(path: string): Observable<Translation> {
+    const bundle = BUNDLES[path];
 
-  getTranslation(lang: string): Observable<Translation> {
-    return this.#httpClient.get<Translation>(`/i18n/${lang}.json`);
+    return bundle
+      ? from(bundle()).pipe(map((module) => module.default))
+      : throwError(() => new Error(`No bundled translation for "${path}"`));
   }
 }

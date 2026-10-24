@@ -46,7 +46,7 @@ Before considering a change done, run the same pipeline as CI: `format:check`, `
 2. Name the screen after what it is, not after the CRUD operation, and stick to `list`, `detail`, `create`, `edit`, `form`. One screen handling both creation and update is `form/<entity>-form-page.ts`, with the mode derived from the presence of the route parameter.
 3. If the page keeps state beyond a few local signals, move it to a store: see "Where code goes in a feature" and "State and data access" below.
 4. Wire the page into `<feature>-routes.ts`, with a `pageTitle.<key>` title.
-5. Add its translations under the feature's i18n scope (`public/i18n/<feature>/<lang>.json`), keyed by screen (`<feature>.<screen>.*`): for example `site.hero.*`.
+5. Add its translations under the feature's i18n scope (`src/i18n/<feature>/<lang>.json`), keyed by screen (`<feature>.<screen>.*`): for example `site.hero.*`.
 
 ## Where code goes in a feature
 
@@ -94,11 +94,13 @@ Before considering a change done, run the same pipeline as CI: `format:check`, `
 
 ## i18n (Transloco)
 
-- The global `public/i18n/<lang>.json` files only hold keys needed synchronously before any scope loads: `pageTitle.*` (used by the title strategy on navigation) and the 404 page. They are preloaded by an app initializer: keep them minimal.
-- Each feature has a lazy scope in `public/i18n/<feature>/<lang>.json`, declared with `provideTranslocoScope('<feature>')` in the feature's routes. Keys are prefixed with the scope (`site.hero.title`).
-- Every feature route resolves `preloadScope('<feature>')` next to `provideTranslocoScope`, so its texts are there at first paint.
-- English is the default language.
-- Every key must exist in both `en` and `fr`.
+- The language comes from the route, never from the browser or a cookie: `/` and `/mentions-legales` are French, `/en` and `/en/legal` are English. French is the default (`DEFAULT_LANG` in `core/i18n/site-lang.ts`). No browser-language detection, no persisted choice, no cookie.
+- Each page route carries `data: { lang }` and `resolve: { lang: langResolver }`: the resolver loads that language, then activates it. The `**` route renders the 404 in French. The language switch is a plain link to the counterpart URL (`counterpartUrl`).
+- Translations are bundled, not fetched: `TranslocoBundledLoader` maps each path to a dynamic `import()` of `src/i18n/<path>.json`, so there is no `HttpClient` and prerendering works. A new file needs a line in that map.
+- The global `src/i18n/<lang>.json` files only hold keys needed synchronously before any scope loads: `pageTitle.*` (used by the title strategy on navigation) and the 404 page. The default language is loaded by an app initializer: keep them minimal.
+- Each feature has a lazy scope in `src/i18n/<feature>/<lang>.json`, declared with `provideTranslocoScope('<feature>')` in the feature's routes. Keys are prefixed with the scope (`site.hero.title`).
+- A page route resolves `preloadScope('<feature>')` on a child of the route that resolves `langResolver`: parents resolve first, so the scope is loaded for the new language.
+- Every key must exist in both `fr` and `en`.
 
 ## Testing
 
@@ -120,7 +122,7 @@ Before considering a change done, run the same pipeline as CI: `format:check`, `
 - The HEALTHCHECK targets `127.0.0.1`, not `localhost`: nginx listens on IPv4 only and `localhost` resolves to `::1` in the alpine image. The `docker` job of `ci.yml` waits for the container to be healthy.
 - The required status check `ci` is the gate job at the end of `ci.yml`, not a build job: a new CI job must be added to its `needs`, or its failure will not block a merge. It runs `if: always()`, never `!cancelled()`: a skipped required check counts as passing and a cancelled run must turn the gate red.
 - Dependabot never bumps the Node major in the Dockerfile: it follows `.nvmrc` and the CI `node-version`, changed together by hand.
-- The app initializer in `transloco-provider.ts` waits for the active language to load: without it the first paint shows missing-translation warnings.
+- The app initializer in `transloco-provider.ts` waits for the default language to load: without it the first paint shows missing-translation warnings.
 - jsdom 30 ships `HTMLDialogElement` without `showModal` and `close`, and implements neither the Esc handling of `<dialog>` nor the `cancel` event it fires: specs dispatch it by hand and the e2e suite covers the real behavior.
 - `LanguageStore` keeps the `lang` attribute on `<html>` in sync so assistive technologies announce the right language, and `AppTitleStrategy` re-translates the title whenever the active language changes.
 - `transloco-testing.ts` provides Transloco in unit tests: translations resolve to their key, and scoped keys use the camel-cased scope name.

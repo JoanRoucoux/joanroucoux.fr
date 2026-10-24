@@ -1,0 +1,9 @@
+<nav class="flex gap-3 text-sm" [attr.aria-label]="navLabel()">
+  @for (code of langs; track code) {
+    @if (code === lang()) {
+      <span aria-current="true" [attr.lang]="code">{{ labels[code] }}</span>
+    } @else {
+      <a class="underline" [attr.hreflang]="code" [attr.lang]="code" [routerLink]="url()">{{ labels[code] }}</a>
+    }
+  }
+</nav>
