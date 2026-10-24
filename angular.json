@@ -8,7 +8,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "joanroucoux.fr": {
+    "joanroucoux-fr": {
       "projectType": "application",
       "root": "",
       "sourceRoot": "src",
@@ -64,15 +64,12 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
-          "options": {
-            "proxyConfig": "proxy.conf.json"
-          },
           "configurations": {
             "production": {
-              "buildTarget": "joanroucoux.fr:build:production"
+              "buildTarget": "joanroucoux-fr:build:production"
             },
             "development": {
-              "buildTarget": "joanroucoux.fr:build:development"
+              "buildTarget": "joanroucoux-fr:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +80,6 @@
             "setupFiles": ["src/test-setup.ts"],
             "coverageInclude": ["src/**/*.ts", "src/**/*.html"],
             "coverageExclude": [
-              "src/app/core/api-client/**",
               "src/index.html",
               "src/main.ts",
               "src/app/app-config.ts",

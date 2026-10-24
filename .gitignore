@@ -20,8 +20,6 @@ pnpm-debug.log
 !.vscode/mcp.json
 .history/*
 
-/src/app/core/api-client
-
 /test-results
 /playwright-report
 /blob-report
