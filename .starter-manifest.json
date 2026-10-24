@@ -1,0 +1,12 @@
+{
+  "starter": "angular-starter-web",
+  "template": "https://github.com/JoanRoucoux/angular-starter-web.git",
+  "ref": null,
+  "modules": [],
+  "tokens": {
+    "appName": "joanroucoux-fr",
+    "title": "Joan Roucoux",
+    "feature": "site"
+  },
+  "generatedAt": "2026-10-24T14:30:06.997Z"
+}
