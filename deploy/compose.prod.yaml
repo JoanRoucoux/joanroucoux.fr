@@ -1,0 +1,10 @@
+services:
+  site:
+    image: ghcr.io/joanroucoux/joanroucoux.fr:${SITE_TAG:?SITE_TAG must be set}
+    networks:
+      - edge
+    restart: unless-stopped
+
+networks:
+  edge:
+    external: true

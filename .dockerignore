@@ -8,6 +8,7 @@ dist
 coverage
 .angular
 e2e
+e2e-prod
 test-results
 playwright-report
 blob-report

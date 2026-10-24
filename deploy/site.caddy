@@ -1,0 +1,41 @@
+joanroucoux.fr {
+	encode zstd gzip
+
+	header {
+		defer
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+
+	log {
+		output file /data/logs/joanroucoux.fr.log {
+			roll_interval 24h
+			roll_keep 90
+			roll_keep_for 2136h
+		}
+		format filter {
+			wrap json
+			request>remote_ip ip_mask {
+				ipv4 16
+				ipv6 32
+			}
+			request>client_ip ip_mask {
+				ipv4 16
+				ipv6 32
+			}
+			request>headers>Cookie delete
+			request>headers>Authorization delete
+			request>headers>X-Forwarded-For delete
+			request>headers>Forwarded delete
+			request>headers>X-Real-Ip delete
+			request>headers>True-Client-Ip delete
+			request>headers>Cf-Connecting-Ip delete
+		}
+	}
+
+	reverse_proxy site:80
+}
+
+www.joanroucoux.fr {
+	redir https://joanroucoux.fr{uri} permanent
+}

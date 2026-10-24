@@ -1,9 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
+  workflow_call:
 
 permissions:
   contents: read
@@ -46,6 +45,12 @@ jobs:
       - name: Check the prerendered pages
         run: pnpm run check:prerender
 
+      - name: Check internal links and assets
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --offline --no-progress --base-url ${{ github.workspace }}/dist/joanroucoux-fr/browser 'dist/joanroucoux-fr/browser/**/*.html'
+          fail: true
+
   e2e:
     runs-on: ubuntu-latest
     steps:
@@ -84,10 +89,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Build the production image
         run: docker build -t app:ci .
 
-      - name: Check that nginx is healthy, falls back to index.html, sends headers and 404s missing files
+      - name: Start the container and wait until it is healthy
         run: |
           docker run -d --name web -p 8080:80 --health-interval 2s app:ci
           for _ in $(seq 30); do
@@ -95,10 +112,36 @@ jobs:
             sleep 2
           done
           [ "$(docker inspect -f '{{.State.Health.Status}}' web)" = healthy ]
-          curl -sf http://localhost:8080/users/1 | grep -q "<app-root"
-          curl -sfI http://localhost:8080/ | tr -d '\r' | grep -qi "^content-security-policy:.*trusted-types angular"
-          curl -sfI http://localhost:8080/i18n/en.json | tr -d '\r' | grep -qi "^cache-control: no-cache"
-          [ "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/missing.js)" = 404 ]
+
+      - name: Check routing, error pages and headers
+        run: |
+          base=http://localhost:8080
+          code() { curl -s -o /dev/null -w '%{http_code}' "$base$1"; }
+          for path in / /en /mentions-legales /en/legal; do
+            [ "$(code "$path")" = 200 ] || { echo "$path is not 200"; exit 1; }
+          done
+          curl -sf "$base/" | grep -q "Joan Roucoux</h1>"
+          curl -sf "$base/en" | grep -q "Joan Roucoux</h1>"
+          curl -sf "$base/mentions-legales" | grep -q "Mentions légales</h1>"
+          curl -sf "$base/en/legal" | grep -q "Legal notice</h1>"
+          [ "$(code /en/)" = 301 ]
+          curl -sI "$base/en/" | tr -d '\r' | grep -qi "^location: /en$"
+          for path in /projets /en/x; do
+            [ "$(code "$path")" = 404 ] || { echo "$path is not 404"; exit 1; }
+            curl -s "$base$path" | grep -q "Page introuvable"
+            if curl -s "$base$path" | grep -q "Joan Roucoux</h1>"; then exit 1; fi
+          done
+          [ "$(code /missing.js)" = 404 ]
+          [ "$(code /%5Cevil.com/)" = 404 ]
+          [ "$(code /mentions-legales/)" = 301 ]
+          curl -sfI "$base/" | tr -d '\r' | grep -qi "^content-security-policy:.*trusted-types angular"
+          curl -sfI "$base/" | tr -d '\r' | grep -qi "^cache-control: no-cache"
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Production end-to-end tests
+        run: pnpm exec playwright test -c playwright-prod.config.ts
 
   ops:
     runs-on: ubuntu-latest
@@ -108,6 +151,10 @@ jobs:
 
       - name: Check the workflows
         run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.12
+
+      - name: Validate the Caddy snippet
+        run: |
+          docker run --rm -e ACME_EMAIL=ci@example.com -v "$PWD/deploy:/etc/caddy/sites:ro" caddy:2.11.7-alpine sh -c 'printf "{\n\temail {\$ACME_EMAIL}\n\tlog default {\n\t\texclude http.log.access\n\t}\n}\nimport /etc/caddy/sites/*.caddy\n" > /tmp/Caddyfile && caddy validate --config /tmp/Caddyfile'
 
   ci:
     if: always()
