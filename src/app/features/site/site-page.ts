@@ -4,11 +4,11 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import { LanguageStore } from '@core/i18n/language-store';
 
-import { LangSwitch } from './lang-switch/lang-switch';
+import { SiteFooter } from './footer/site-footer';
 
 @Component({
   selector: 'app-site-page',
-  imports: [TranslocoPipe, LangSwitch],
+  imports: [TranslocoPipe, SiteFooter],
   templateUrl: './site-page.html',
 })
 export class SitePage {

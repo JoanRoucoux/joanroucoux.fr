@@ -36,3 +36,26 @@ test('serves the legal notice routes in their language', async ({ page }) => {
   await page.goto('/en/legal');
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 });
+
+test('links the legal notice from the footer in each language', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('contentinfo').getByRole('link', { name: 'Mentions légales' })).toHaveAttribute(
+    'href',
+    '/mentions-legales',
+  );
+
+  await page.goto('/en');
+  await expect(page.getByRole('contentinfo').getByRole('link', { name: 'Legal notice' })).toHaveAttribute(
+    'href',
+    '/en/legal',
+  );
+});
+
+for (const path of ['/', '/en', '/mentions-legales', '/en/legal']) {
+  test(`has no accessibility violation on ${path}`, async ({ page }) => {
+    await page.goto(path);
+
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await expectNoAccessibilityViolations(page);
+  });
+}

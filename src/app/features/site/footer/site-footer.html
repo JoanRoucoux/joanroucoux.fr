@@ -1,0 +1,6 @@
+<footer
+  class="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-6 px-4 py-8 text-sm text-(--muted-foreground)"
+>
+  <a class="underline" [routerLink]="legalUrl()">{{ 'site.footer.legal' | transloco }}</a>
+  <app-lang-switch [lang]="lang()" [page]="page()" />
+</footer>

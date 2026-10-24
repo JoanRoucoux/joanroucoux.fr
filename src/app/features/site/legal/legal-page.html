@@ -1,1 +1,41 @@
-<h1 class="text-4xl font-bold tracking-tight text-balance">{{ 'site.legal.title' | transloco }}</h1>
+<main class="mx-auto flex max-w-3xl flex-col gap-8 px-4 pt-12" id="main-content">
+  <h1 class="text-4xl font-black tracking-tight text-balance">{{ 'site.legal.title' | transloco }}</h1>
+
+  <section class="flex flex-col gap-3">
+    <h2 class="text-2xl font-medium">{{ 'site.legal.publisher.title' | transloco }}</h2>
+    <dl class="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-1">
+      <dt class="text-(--muted-foreground)">{{ 'site.legal.publisher.company' | transloco }}</dt>
+      <dd>{{ 'site.legal.publisher.companyValue' | transloco }}</dd>
+      <dt class="text-(--muted-foreground)">{{ 'site.legal.publisher.form' | transloco }}</dt>
+      <dd>{{ 'site.legal.publisher.formValue' | transloco }}</dd>
+      <dt class="text-(--muted-foreground)">{{ 'site.legal.publisher.capital' | transloco }}</dt>
+      <dd>{{ 'site.legal.publisher.capitalValue' | transloco }}</dd>
+      <dt class="text-(--muted-foreground)">{{ 'site.legal.publisher.seat' | transloco }}</dt>
+      <dd>{{ 'site.legal.publisher.seatValue' | transloco }}</dd>
+      <dt class="text-(--muted-foreground)">{{ 'site.legal.publisher.registry' | transloco }}</dt>
+      <dd>{{ 'site.legal.publisher.registryValue' | transloco }}</dd>
+      <dt class="text-(--muted-foreground)">{{ 'site.legal.publisher.director' | transloco }}</dt>
+      <dd>{{ 'site.legal.publisher.directorValue' | transloco }}</dd>
+      <dt class="text-(--muted-foreground)">{{ 'site.legal.publisher.contact' | transloco }}</dt>
+      <dd>
+        <a class="underline" [href]="'mailto:' + ('site.legal.publisher.contactValue' | transloco)">{{
+          'site.legal.publisher.contactValue' | transloco
+        }}</a>
+      </dd>
+    </dl>
+  </section>
+
+  <section class="flex flex-col gap-3">
+    <h2 class="text-2xl font-medium">{{ 'site.legal.hosting.title' | transloco }}</h2>
+    <p>{{ 'site.legal.hosting.host' | transloco }}</p>
+  </section>
+
+  <section class="flex flex-col gap-3" data-testid="legal-logs">
+    <h2 class="text-2xl font-medium">{{ 'site.legal.logs.title' | transloco }}</h2>
+    <p>{{ 'site.legal.logs.collected' | transloco }}</p>
+    <p>{{ 'site.legal.logs.purpose' | transloco }}</p>
+    <p>{{ 'site.legal.logs.retention' | transloco }}</p>
+    <p>{{ 'site.legal.logs.tracking' | transloco }}</p>
+  </section>
+</main>
+<app-site-footer page="legal" [lang]="lang()" />

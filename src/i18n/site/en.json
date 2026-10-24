@@ -1,7 +1,38 @@
 {
   "title": "Joan Roucoux",
-  "description": "Welcome to Joan Roucoux. Build your first page in src/app/features/site/.",
+  "job": "Freelance full stack developer",
+  "footer": {
+    "legal": "Legal notice"
+  },
   "legal": {
-    "title": "Legal notice"
+    "title": "Legal notice",
+    "publisher": {
+      "title": "Publisher",
+      "company": "Company name",
+      "companyValue": "[[RAISON_SOCIALE]]",
+      "form": "Legal form",
+      "formValue": "[[FORME]]",
+      "capital": "Share capital",
+      "capitalValue": "[[CAPITAL]]",
+      "seat": "Registered office",
+      "seatValue": "[[SIEGE]]",
+      "registry": "RCS",
+      "registryValue": "[[RCS]]",
+      "director": "Director of publication",
+      "directorValue": "Joan Roucoux",
+      "contact": "Contact",
+      "contactValue": "joan.roucoux@gmail.com"
+    },
+    "hosting": {
+      "title": "Hosting",
+      "host": "OVH SAS, 2 rue Kellermann, 59100 Roubaix, France, phone +33 9 72 10 10 07"
+    },
+    "logs": {
+      "title": "Server logs",
+      "collected": "When you visit the site, the server records the visitor’s masked IP address, the requested page, the referrer and the user agent.",
+      "purpose": "This data is used for audience measurement and for the security of the site.",
+      "retention": "It is kept for 90 days at most.",
+      "tracking": "No cookie and no tracking script is used."
+    }
   }
 }

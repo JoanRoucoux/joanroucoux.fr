@@ -18,12 +18,6 @@ describe('App', () => {
       providers: [provideZonelessChangeDetection(), provideRouter([])],
     });
 
-  it('should render the main content area', async () => {
-    await renderApp();
-
-    expect(screen.getByRole('main')).toBeInTheDocument();
-  });
-
   it('should announce the current page in a live region', async () => {
     await renderApp();
 

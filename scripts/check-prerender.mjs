@@ -3,16 +3,18 @@ import { join } from 'node:path';
 
 const root = 'dist/joanroucoux-fr/browser';
 
+const failures = [];
+
 const fail = (message) => {
-  console.error(`check-prerender: ${message}`);
-  process.exit(1);
+  failures.push(message);
 };
 
 const read = (path) => {
   try {
     return readFileSync(join(root, path), 'utf8');
   } catch {
-    return fail(`${path} is missing`);
+    fail(`${path} is missing`);
+    return '';
   }
 };
 
@@ -29,12 +31,12 @@ const htmlFiles = (dir) =>
 
 const home = read('index.html');
 expectIncludes('index.html', home, '<html lang="fr"');
-expectIncludes('index.html', home, '<title>Joan Roucoux, développeur full-stack freelance</title>');
+expectIncludes('index.html', home, '<title>Joan Roucoux, développeur full stack freelance</title>');
 if (!/<h1[^>]*>\s*Joan Roucoux\s*<\/h1>/.test(home)) fail('index.html has no h1 "Joan Roucoux"');
 
 const english = read('en/index.html');
 expectIncludes('en/index.html', english, '<html lang="en"');
-expectIncludes('en/index.html', english, '<title>Joan Roucoux, freelance full-stack developer</title>');
+expectIncludes('en/index.html', english, '<title>Joan Roucoux, freelance full stack developer</title>');
 
 for (const [path, html] of [
   ['index.html', home],
@@ -71,6 +73,11 @@ for (const file of htmlFiles(root)) {
       fail(`${name} has an executable inline script (${tag})`);
     }
   }
+}
+
+if (failures.length > 0) {
+  for (const message of failures) console.error(`check-prerender: ${message}`);
+  process.exit(1);
 }
 
 console.log('check-prerender: ok');

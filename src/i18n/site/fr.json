@@ -1,7 +1,38 @@
 {
   "title": "Joan Roucoux",
-  "description": "Bienvenue sur Joan Roucoux. Construisez votre première page dans src/app/features/site/.",
+  "job": "Développeur full stack freelance",
+  "footer": {
+    "legal": "Mentions légales"
+  },
   "legal": {
-    "title": "Mentions légales"
+    "title": "Mentions légales",
+    "publisher": {
+      "title": "Éditeur",
+      "company": "Raison sociale",
+      "companyValue": "[[RAISON_SOCIALE]]",
+      "form": "Forme juridique",
+      "formValue": "[[FORME]]",
+      "capital": "Capital social",
+      "capitalValue": "[[CAPITAL]]",
+      "seat": "Siège social",
+      "seatValue": "[[SIEGE]]",
+      "registry": "RCS",
+      "registryValue": "[[RCS]]",
+      "director": "Directeur de la publication",
+      "directorValue": "Joan Roucoux",
+      "contact": "Contact",
+      "contactValue": "joan.roucoux@gmail.com"
+    },
+    "hosting": {
+      "title": "Hébergement",
+      "host": "OVH SAS, 2 rue Kellermann, 59100 Roubaix, France, tél. +33 9 72 10 10 07"
+    },
+    "logs": {
+      "title": "Journaux du serveur",
+      "collected": "Lors de la consultation du site, le serveur enregistre l’adresse IP masquée du visiteur, la page demandée, le référent et l’agent utilisateur.",
+      "purpose": "Ces données servent à la mesure d’audience et à la sécurité du site.",
+      "retention": "Elles sont conservées 90 jours au plus.",
+      "tracking": "Aucun cookie et aucun script de suivi ne sont utilisés."
+    }
   }
 }
