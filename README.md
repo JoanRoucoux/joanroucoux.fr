@@ -31,7 +31,7 @@ pnpm start      # dev server on http://localhost:4200
   ```
 
 - Pages live in `src/app/features/site/`: the home page at its root and the legal notice in `legal/`. Route paths come from `SITE_PATHS` in `contract/site-paths.ts`; copy lives in `src/i18n/site/<lang>.json`, and every key exists in both languages. See "Adding a page to a feature" in [AGENTS.md](AGENTS.md).
-- Fonts: Geist (400, 500, 900) and Geist Mono (500) woff2 files in `public/fonts/`, from the `vercel/geist-font` release `v1.7.2` (OFL licence alongside).
+- Fonts: Bricolage Grotesque (opsz, wght) and Geist (wght) variable woff2 files plus Rubik 700 in `public/fonts/`, from the `@fontsource-variable/bricolage-grotesque` 5.3.0, `@fontsource-variable/geist` 5.3.0 and `@fontsource/rubik` 5.3.0 packages (OFL licences alongside).
 - Icons: square crop of `background.webp` (7680x4320), run once from the folder holding the source image, no script:
 
 ```bash

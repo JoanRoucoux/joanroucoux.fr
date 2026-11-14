@@ -1,60 +1,244 @@
 @import 'tailwindcss';
 
 @font-face {
-  font-family: 'Geist';
+  font-family: 'Bricolage Grotesque';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 200 800;
   font-display: swap;
-  src: url('/fonts/Geist-Regular.woff2') format('woff2');
+  src: url('/fonts/BricolageGrotesque-opsz-wght.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Geist';
   font-style: normal;
-  font-weight: 500;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('/fonts/Geist-Medium.woff2') format('woff2');
+  src: url('/fonts/Geist-wght.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Geist';
+  font-family: 'Rubik';
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
   font-display: swap;
-  src: url('/fonts/Geist-Black.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/GeistMono-Medium.woff2') format('woff2');
+  src: url('/fonts/Rubik-700.woff2') format('woff2');
 }
 
 @theme {
   --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 }
 
 :root {
-  color-scheme: dark;
-  --background: #000000;
-  --foreground: #f4f4f5;
-  --muted-foreground: rgba(228, 228, 231, 0.9);
-  --primary: #f4f4f5;
-  --primary-foreground: #000000;
+  color-scheme: light;
+  --ground: #efeff7;
+  --ink: #15153f;
+  --fixed: #15153f;
+  --soft: #4a4a75;
+  --line: rgb(21 21 63 / 0.12);
+  --night: #04041a;
+  --grad: linear-gradient(120deg, #2a3bff, #e01e8c);
+  --w: 1160px;
+  --gut: clamp(20px, 4vw, 40px);
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 48px;
+  --s6: 64px;
+  --s7: 96px;
+  --s8: 128px;
+  --sec: var(--s8);
+  --head: var(--s5);
+  --gap: var(--s3);
+  --pad: var(--s4);
+  --r-l: 32px;
+  --r-m: 24px;
+  --r-s: 16px;
+  --fh: 124px;
+  --t-display: clamp(60px, 10.6vw, 156px);
+  --t-h2: clamp(40px, 5vw, 64px);
+  --t-h3: 28px;
+  --t-lead: 19px;
+  --t-body: 17px;
+  --t-small: 15px;
+  --g-bg: linear-gradient(140deg, rgb(255 255 255 / 0.52), rgb(255 255 255 / 0.2));
+  --g-bd: rgb(255 255 255 / 0.9);
+  --g-sh:
+    inset 0 1px 0 #fff, inset 1px 0 0 rgb(255 255 255 / 0.5), inset 0 -1px 0 rgb(255 255 255 / 0.25),
+    0 32px 64px -32px rgb(30 30 110 / 0.45);
+  --fiche: rgb(255 255 255 / 0.78);
+  --well: rgb(255 255 255 / 0.42);
+  --background: var(--ground);
+  --foreground: var(--ink);
+  --muted-foreground: var(--soft);
+  --primary: var(--ink);
+  --primary-foreground: #fff;
 }
 
-html {
-  scrollbar-gutter: stable;
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--t-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    color: var(--foreground);
+    background-color: var(--background);
+    overflow-x: hidden;
+  }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  color: var(--foreground);
-  background-color: var(--background);
+@layer components {
+  .glass {
+    background: var(--g-bg);
+    -webkit-backdrop-filter: blur(28px) saturate(1.8);
+    backdrop-filter: blur(28px) saturate(1.8);
+    border: 1px solid var(--g-bd);
+    box-shadow: var(--g-sh);
+  }
+
+  .glass-d {
+    background: rgb(255 255 255 / 0.12);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+    backdrop-filter: blur(24px) saturate(1.6);
+    border: 1px solid rgb(255 255 255 / 0.24);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.22),
+      0 30px 60px -30px rgb(0 0 0 / 0.7);
+    color: #fff;
+  }
+
+  .display {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    font-variation-settings: 'opsz' 96;
+  }
+
+  .btn {
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .btn.white {
+    background: #fff;
+    color: var(--fixed);
+  }
+
+  .btn.glass {
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  .sec {
+    width: min(var(--w), 100% - 2 * var(--gut));
+    margin-inline: auto;
+    padding-top: var(--sec);
+  }
+
+  .head {
+    margin-bottom: var(--head);
+    text-align: center;
+  }
+
+  .sec h2 {
+    font-size: var(--t-h2);
+    line-height: 1;
+  }
+
+  .lede {
+    font-size: var(--t-lead);
+    color: var(--soft);
+    margin-top: var(--s2);
+    text-wrap: balance;
+  }
+
+  .card {
+    border-radius: var(--r-m);
+    padding: var(--pad);
+  }
+
+  .card h3 {
+    font-size: var(--t-h3);
+    line-height: 1.1;
+  }
+
+  .d {
+    color: var(--soft);
+    margin-top: var(--s2);
+    max-width: 50ch;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s3);
+    margin-top: var(--s3);
+    font-size: var(--t-small);
+    font-weight: 600;
+  }
+
+  .links a,
+  summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1.5px solid currentColor;
+    padding-bottom: 2px;
+  }
+
+  .x {
+    width: 0.95em;
+    height: 0.95em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex: none;
+  }
+
+  .when {
+    font-size: var(--t-small);
+    color: var(--soft);
+  }
+
+  .pts {
+    margin-top: var(--s2);
+    max-width: 64ch;
+  }
+
+  .pts li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 16px;
+    margin-top: 6px;
+  }
+
+  .pts li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.68em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--grad);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -62,6 +246,7 @@ body {
   ::before,
   ::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
