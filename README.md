@@ -39,4 +39,13 @@ pnpm dlx sharp-cli@5.3.0 -i background.webp -o public/favicon-32.png extract 192
 pnpm dlx sharp-cli@5.3.0 -i background.webp -o public/apple-touch-icon.png extract 192 4032 1536 1536 -- resize 180 180 --palette --compressionLevel 9
 ```
 
+- Images: the Cairn screenshots are converted from the PNG files of the Cairn repository, run once from the folder holding them, no script:
+
+```bash
+pnpm dlx sharp-cli@5.3.0 -i dashboard-dark.png -o public/images/cairn/dashboard-desktop.webp --quality 82
+pnpm dlx sharp-cli@5.3.0 -i mobile-dashboard-dark.png -o public/images/cairn/dashboard-mobile.webp --quality 82
+```
+
+The other screens follow the same pattern (`allocation-dark` and `mobile-holdings-dark`, `holding-dark` and `mobile-holding-dark`).
+
 See [AGENTS.md](AGENTS.md) for the architecture, conventions and testing guidelines.

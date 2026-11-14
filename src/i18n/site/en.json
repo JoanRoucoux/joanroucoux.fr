@@ -77,6 +77,59 @@
         "methods": "Methods"
       }
     },
+    "projects": {
+      "title": "Projects",
+      "lede": "What I build outside assignments, from the code to production.",
+      "more": "Show more projects",
+      "code": "View the code",
+      "cairn": {
+        "title": "Cairn",
+        "description": "A personal wealth tracker, line by line. Each account (PEA, CTO, PER, life insurance, crypto) is valued automatically from several price sources.",
+        "screensLabel": "Cairn screens",
+        "screens": {
+          "dashboard": "Portfolio",
+          "allocation": "Allocation",
+          "holding": "Holding detail"
+        },
+        "links": {
+          "back": "Back-end code",
+          "front": "Front-end code",
+          "storybook": "Storybook"
+        },
+        "alt": {
+          "dashboard": {
+            "desktop": "Cairn Portfolio screen on desktop: the overview of the wealth and its accounts",
+            "mobile": "Cairn Portfolio screen on mobile: the overview of the wealth and its accounts"
+          },
+          "allocation": {
+            "desktop": "Cairn Allocation screen on desktop: how the wealth is split between its investments",
+            "mobile": "Cairn Allocation screen on mobile: how the wealth is split between its investments"
+          },
+          "holding": {
+            "desktop": "Cairn Holding detail screen on desktop: the information about one investment",
+            "mobile": "Cairn Holding detail screen on mobile: the information about one investment"
+          }
+        }
+      },
+      "cards": {
+        "starters": {
+          "title": "Starters",
+          "description": "A family of foundations (Angular, React, Spring Boot with a hexagonal architecture) and a generator that creates an application with tests, CI and conventions already in place. This site comes from it."
+        },
+        "infra": {
+          "title": "Infra",
+          "description": "My self-hosted infrastructure, fully described as code: servers, DNS, shared proxy and monitoring. Cairn and this site run on it."
+        },
+        "shortener": {
+          "title": "URL shortener",
+          "description": "A short link service built for high traffic: unique identifiers without conflicts between instances, a cache for the most requested links and load balancing."
+        },
+        "subtitles": {
+          "title": "Subtitle synchronizer",
+          "description": "A web tool to realign a subtitle file that is out of step with the video, with precise timing adjustment."
+        }
+      }
+    },
     "certifications": {
       "title": "Certifications",
       "lede": "Agile at scale, cloud and English.",

@@ -1,0 +1,129 @@
+<app-site-home-section-head
+  [index]="1"
+  [lede]="'site.home.projects.lede' | transloco"
+  [title]="'site.home.projects.title' | transloco"
+/>
+<div data-testid="projects-content">
+  <article class="card glass cairn">
+    <div class="cairn-head">
+      <div>
+        <h3 class="display cairn-t">
+          <img alt="" height="32" src="/images/cairn/mark.svg" width="32" />{{
+            'site.home.projects.cairn.title' | transloco
+          }}
+        </h3>
+        <p class="d">{{ 'site.home.projects.cairn.description' | transloco }}</p>
+      </div>
+      <div>
+        <app-site-home-tech-list size="sm" [techs]="cairn.techs" />
+        <p class="links">
+          <a rel="noopener" target="_blank" [href]="links.cairn.back"
+            >{{ 'site.home.projects.cairn.links.back' | transloco }}
+            <app-site-home-external-icon />
+          </a>
+          <a rel="noopener" target="_blank" [href]="links.cairn.front"
+            >{{ 'site.home.projects.cairn.links.front' | transloco }}
+            <app-site-home-external-icon />
+          </a>
+          <a rel="noopener" target="_blank" [href]="links.cairn.storybook"
+            >{{ 'site.home.projects.cairn.links.storybook' | transloco }}
+            <app-site-home-external-icon />
+          </a>
+        </p>
+      </div>
+    </div>
+    <div class="screens">
+      <div class="tabs" role="tablist" [attr.aria-label]="'site.home.projects.cairn.screensLabel' | transloco">
+        @for (name of cairn.screens; track name) {
+          <button
+            #tab
+            aria-controls="cairn-panel"
+            role="tab"
+            type="button"
+            [attr.aria-selected]="screen() === name"
+            [id]="'cairn-tab-' + name"
+            [tabindex]="screen() === name ? 0 : -1"
+            (click)="screen.set(name)"
+            (keydown)="onTabKeydown($event)"
+          >
+            {{ 'site.home.projects.cairn.screens.' + name | transloco }}
+          </button>
+        }
+      </div>
+      <div id="cairn-panel" role="tabpanel" tabindex="0" [attr.aria-labelledby]="'cairn-tab-' + screen()">
+        <div class="browser">
+          <div aria-hidden="true" class="bar"><i></i><i></i><i></i><span>cairn.joanroucoux.fr</span></div>
+          <img
+            data-testid="cairn-desktop-shot"
+            decoding="async"
+            height="900"
+            loading="lazy"
+            width="1440"
+            [alt]="'site.home.projects.cairn.alt.' + screen() + '.desktop' | transloco"
+            [src]="'/images/cairn/' + screen() + '-desktop.webp'"
+          />
+        </div>
+        <div class="phone">
+          <img
+            data-testid="cairn-mobile-shot"
+            decoding="async"
+            height="844"
+            loading="lazy"
+            width="390"
+            [alt]="'site.home.projects.cairn.alt.' + screen() + '.mobile' | transloco"
+            [src]="'/images/cairn/' + screen() + '-mobile.webp'"
+          />
+        </div>
+      </div>
+    </div>
+  </article>
+  <div class="pair">
+    @for (card of visibleCards; track card.id) {
+      <article class="card glass">
+        <h3 class="display" [id]="'project-title-' + card.id">
+          {{ 'site.home.projects.cards.' + card.id + '.title' | transloco }}
+        </h3>
+        <p class="d">{{ 'site.home.projects.cards.' + card.id + '.description' | transloco }}</p>
+        <app-site-home-tech-list size="sm" [techs]="card.techs" />
+        <p class="links">
+          <a
+            rel="noopener"
+            target="_blank"
+            [attr.aria-describedby]="'project-title-' + card.id"
+            [href]="links.projects[card.id]"
+            >{{ 'site.home.projects.code' | transloco }}
+            <app-site-home-external-icon />
+          </a>
+        </p>
+      </article>
+    }
+  </div>
+  <div class="pair" [hidden]="!revealed()">
+    @for (card of extraCards; track card.id) {
+      <article class="card glass">
+        <h3 #extraTitle class="display" [attr.tabindex]="$first ? -1 : null" [id]="'project-title-' + card.id">
+          {{ 'site.home.projects.cards.' + card.id + '.title' | transloco }}
+        </h3>
+        <p class="d">{{ 'site.home.projects.cards.' + card.id + '.description' | transloco }}</p>
+        <app-site-home-tech-list size="sm" [techs]="card.techs" />
+        <p class="links">
+          <a
+            rel="noopener"
+            target="_blank"
+            [attr.aria-describedby]="'project-title-' + card.id"
+            [href]="links.projects[card.id]"
+            >{{ 'site.home.projects.code' | transloco }}
+            <app-site-home-external-icon />
+          </a>
+        </p>
+      </article>
+    }
+  </div>
+  @if (!revealed()) {
+    <p class="more-p">
+      <button aria-expanded="false" class="btn glass" type="button" (click)="reveal()">
+        {{ 'site.home.projects.more' | transloco }}
+      </button>
+    </p>
+  }
+</div>

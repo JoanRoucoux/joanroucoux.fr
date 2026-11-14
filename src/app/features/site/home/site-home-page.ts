@@ -13,6 +13,7 @@ import { FluidLoop } from './fluid/fluid-loop';
 import { SiteHomeFluidHalo } from './fluid/halo/site-home-fluid-halo';
 import { SiteHomeHero } from './hero/site-home-hero';
 import { SiteHomeNav } from './nav/site-home-nav';
+import { SiteHomeProjects } from './projects/site-home-projects';
 import { HOME_SECTIONS } from './site-home-sections';
 import { SiteHomeSkills } from './skills/site-home-skills';
 
@@ -26,6 +27,7 @@ import { SiteHomeSkills } from './skills/site-home-skills';
     SiteHomeFluidHalo,
     SiteHomeHero,
     SiteHomeNav,
+    SiteHomeProjects,
     SiteHomeSkills,
   ],
   providers: [FluidLoop, FluidAtlas],

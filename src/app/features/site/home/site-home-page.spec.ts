@@ -46,11 +46,11 @@ describe('SiteHomePage', () => {
     expect(screen.getByTestId('fact-sheet')).toHaveTextContent('site.home.facts.experienceValue');
   });
 
-  it('should mount skills, certifications and articles in the main landmark, in page order', async () => {
+  it('should mount skills, projects, certifications and articles in the main landmark, in page order', async () => {
     await renderPage();
 
     const sections = screen.getAllByTestId('section');
-    expect(sections.map((section) => section.id)).toEqual(['skills', 'certifications', 'articles']);
+    expect(sections.map((section) => section.id)).toEqual(['skills', 'projects', 'certifications', 'articles']);
     expect(screen.getByRole('main')).toContainElement(sections[0]!);
   });
 });

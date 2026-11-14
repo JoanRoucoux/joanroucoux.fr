@@ -77,6 +77,59 @@
         "methods": "Méthodes"
       }
     },
+    "projects": {
+      "title": "Projets",
+      "lede": "Ce que je construis en dehors des missions, du code jusqu’à la mise en production.",
+      "more": "Voir plus de projets",
+      "code": "Voir le code",
+      "cairn": {
+        "title": "Cairn",
+        "description": "Un suivi de patrimoine personnel, ligne par ligne. Chaque enveloppe (PEA, CTO, PER, assurance vie, crypto) est valorisée automatiquement à partir de plusieurs sources de cours.",
+        "screensLabel": "Écrans de Cairn",
+        "screens": {
+          "dashboard": "Portefeuille",
+          "allocation": "Répartition",
+          "holding": "Détail d’une ligne"
+        },
+        "links": {
+          "back": "Code du back",
+          "front": "Code du front",
+          "storybook": "Storybook"
+        },
+        "alt": {
+          "dashboard": {
+            "desktop": "Écran Portefeuille de Cairn sur ordinateur : la vue d’ensemble du patrimoine et de ses enveloppes",
+            "mobile": "Écran Portefeuille de Cairn sur mobile : la vue d’ensemble du patrimoine et de ses enveloppes"
+          },
+          "allocation": {
+            "desktop": "Écran Répartition de Cairn sur ordinateur : la répartition du patrimoine entre ses placements",
+            "mobile": "Écran Répartition de Cairn sur mobile : la répartition du patrimoine entre ses placements"
+          },
+          "holding": {
+            "desktop": "Écran Détail d’une ligne de Cairn sur ordinateur : les informations d’un placement",
+            "mobile": "Écran Détail d’une ligne de Cairn sur mobile : les informations d’un placement"
+          }
+        }
+      },
+      "cards": {
+        "starters": {
+          "title": "Starters",
+          "description": "Une famille de socles (Angular, React, Spring Boot en architecture hexagonale) et un générateur qui crée une application avec tests, CI et conventions déjà en place. Ce site en est issu."
+        },
+        "infra": {
+          "title": "Infra",
+          "description": "Mon infrastructure auto-hébergée, entièrement décrite en code : serveurs, DNS, proxy partagé et supervision. Cairn et ce site tournent dessus."
+        },
+        "shortener": {
+          "title": "Raccourcisseur d’URL",
+          "description": "Un service de liens courts pensé pour un trafic élevé : identifiants uniques sans conflit entre instances, cache des liens les plus demandés et répartition de charge."
+        },
+        "subtitles": {
+          "title": "Synchroniseur de sous-titres",
+          "description": "Un outil web pour recaler un fichier de sous-titres décalé par rapport à la vidéo, avec un ajustement précis des minutages."
+        }
+      }
+    },
     "certifications": {
       "title": "Certifications",
       "lede": "Agilité à l’échelle, cloud et anglais.",
