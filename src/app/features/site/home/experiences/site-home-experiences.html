@@ -1,0 +1,52 @@
+<app-site-home-section-head
+  [index]="2"
+  [lede]="'site.home.experiences.lede' | transloco"
+  [title]="'site.home.experiences.title' | transloco"
+/>
+<ol class="tl" data-testid="experiences-timeline">
+  @for (entry of entries; track entry.id) {
+    @let base = 'site.home.experiences.items.' + entry.id;
+    <li>
+      <app-site-home-experience-logo [label]="base + '.org' | transloco" [logo]="entry.logo" />
+      <article class="card glass xp" [class.solo]="entry.facts === 0">
+        <div>
+          <h3 class="display" [id]="'experience-title-' + entry.id">{{ base + '.role' | transloco }}</h3>
+          <p class="org">{{ base + '.org' | transloco }}</p>
+          <p class="when">{{ base + '.when' | transloco }}</p>
+          @if (entry.points > 0) {
+            <ul class="pts">
+              @for (point of entry.pointKeys; track point) {
+                <li>{{ base + '.points.' + point | transloco }}</li>
+              }
+            </ul>
+          }
+          @if (entry.details > 0) {
+            <details>
+              <summary [attr.aria-describedby]="'experience-title-' + entry.id">
+                {{ 'site.home.experiences.more' | transloco }}
+              </summary>
+              <ul class="pts">
+                @for (detail of entry.detailKeys; track detail) {
+                  <li>{{ base + '.details.' + detail | transloco }}</li>
+                }
+              </ul>
+            </details>
+          }
+          @if (entry.techs.length > 0) {
+            <app-site-home-tech-list size="sm" [techs]="entry.techs" />
+          }
+        </div>
+        @if (entry.facts > 0) {
+          <ul class="facts">
+            @for (fact of entry.factKeys; track fact) {
+              <li>
+                <b>{{ base + '.facts.' + fact + '.value' | transloco }}</b>
+                <span>{{ base + '.facts.' + fact + '.label' | transloco }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </article>
+    </li>
+  }
+</ol>

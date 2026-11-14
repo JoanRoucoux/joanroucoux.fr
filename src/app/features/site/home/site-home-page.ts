@@ -7,6 +7,7 @@ import { SiteHomeArticles } from './articles/site-home-articles';
 import { AVAILABILITY } from './availability';
 import { SiteHomeCertifications } from './certifications/site-home-certifications';
 import { CAREER_START, fullYearsSince } from './experience-years';
+import { SiteHomeExperiences } from './experiences/site-home-experiences';
 import { SiteHomeFactSheet } from './fact-sheet/site-home-fact-sheet';
 import { FluidAtlas } from './fluid/fluid-atlas';
 import { FluidLoop } from './fluid/fluid-loop';
@@ -23,6 +24,7 @@ import { SiteHomeSkills } from './skills/site-home-skills';
     SiteFooter,
     SiteHomeArticles,
     SiteHomeCertifications,
+    SiteHomeExperiences,
     SiteHomeFactSheet,
     SiteHomeFluidHalo,
     SiteHomeHero,

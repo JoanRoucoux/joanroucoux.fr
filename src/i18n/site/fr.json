@@ -130,6 +130,95 @@
         }
       }
     },
+    "experiences": {
+      "title": "Expériences",
+      "lede": "Dans la banque depuis 2018, du développement au rôle de tech lead.",
+      "more": "Plus de détails",
+      "items": {
+        "cdc": {
+          "role": "Développeur full stack senior",
+          "org": "Caisse des Dépôts, en freelance",
+          "when": "Juin 2025 à aujourd’hui, Paris",
+          "points": {
+            "1": "Reconstruction des services de la nouvelle banque en ligne : virements, consultation des comptes et des mouvements, mandats de prélèvement, commandes de chéquiers.",
+            "2": "Développement assisté par IA au quotidien et documentation du socle front.",
+            "3": "Un mois en task force sur un incident de production, puis suivi de production."
+          },
+          "details": {
+            "1": "Front en Angular avec des API générées par OpenAPI Generator et des composants documentés dans Storybook.",
+            "2": "Back en Spring Boot et Java, en architecture hexagonale, avec Kafka en production et en consommation (Avro).",
+            "3": "Skills et serveur MCP Storybook pour accélérer le développement assisté par IA.",
+            "4": "Deux équipes agiles : virements, puis consultation."
+          },
+          "facts": {
+            "1": {
+              "value": "2",
+              "label": "équipes : virements et consultation"
+            },
+            "2": {
+              "value": "9",
+              "label": "développeurs au plus par équipe"
+            }
+          }
+        },
+        "sgLead": {
+          "role": "Tech lead",
+          "org": "Société Générale, équipe Cartes",
+          "when": "2022 à 2025, Val de Fontenay",
+          "points": {
+            "1": "Encadrement de 2 à 3 développeurs : montée en compétences, revues de code, feuilles de route techniques alignées sur les priorités métier.",
+            "2": "Consultation du code PIN, activation de carte en ligne, commande en masse de cartes affaires, changement de visuel de carte.",
+            "3": "Migrations de Backbone vers React et de WildFly vers Spring Boot."
+          },
+          "details": {
+            "1": "Sécurité : chiffrement asymétrique et symétrique des données sensibles (CipherTrust), conformité RGPD.",
+            "2": "Performance : gestion du cache et chargement différé.",
+            "3": "Qualité : SonarQube, tests JUnit et Mockito côté back, Jest et React Testing Library côté front.",
+            "4": "Accessibilité : standards W3C, audits avec AXE, design system sous Storybook avec les UX/UI.",
+            "5": "Déploiements orchestrés et production surveillée avec des tableaux de bord Kibana."
+          },
+          "facts": {
+            "1": {
+              "value": "20+",
+              "label": "fonctionnalités livrées"
+            },
+            "2": {
+              "value": "5",
+              "label": "applications, 3 marchés, 2 canaux"
+            }
+          }
+        },
+        "sgDev": {
+          "role": "Développeur full stack",
+          "org": "Société Générale, équipe Cartes",
+          "when": "2018 à 2022, Val de Fontenay",
+          "points": {
+            "1": "Parcours de gestion de la carte bancaire pour les particuliers, les professionnels et les entreprises : opposition, plafonds de paiement, cartes virtuelles, Apple Pay.",
+            "2": "Équipe agile de 2 à 4 développeurs (Scrum, SAFe), avec UX/UI, PO, BA et QA."
+          },
+          "facts": {
+            "1": {
+              "value": "Millions",
+              "label": "de demandes traitées par mois"
+            }
+          }
+        },
+        "orange": {
+          "role": "Développeur full stack, stage",
+          "org": "Orange, Bagnolet",
+          "when": "Février à juillet 2018",
+          "points": {
+            "1": "Application web pour les chargés d’études en déplacement : cadrage, spécifications techniques, ateliers.",
+            "2": "Auparavant, six mois de stage aux États-Unis (Xtreme Action Park, Fort Lauderdale) sur un projet de bornes interactives."
+          }
+        },
+        "cesi": {
+          "role": "Master en ingénierie informatique",
+          "org": "CESI, école d’ingénieurs",
+          "when": "2013 à 2018"
+        }
+      }
+    },
     "certifications": {
       "title": "Certifications",
       "lede": "Agilité à l’échelle, cloud et anglais.",

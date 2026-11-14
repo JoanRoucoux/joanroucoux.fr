@@ -1,0 +1,63 @@
+:host {
+  display: block;
+}
+
+.logo {
+  position: relative;
+  z-index: 1;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-s);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  box-shadow:
+    0 14px 30px -12px rgb(30 30 110 / 0.4),
+    0 0 0 1px rgb(21 21 63 / 0.08);
+}
+
+.logo.cdc {
+  background: #e30613;
+}
+
+.logo.cdc img {
+  width: 86%;
+  height: 86%;
+  object-fit: cover;
+}
+
+.logo.sg {
+  background: linear-gradient(#e9041e 0 50%, #111 50% 100%);
+}
+
+.logo.sg::after {
+  content: '';
+  width: 40%;
+  height: 4px;
+  background: #fff;
+}
+
+.logo.orange {
+  background: #ff7900;
+  place-items: end start;
+  padding: 9px;
+}
+
+.logo.orange span {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.logo.cap svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: var(--fixed);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
