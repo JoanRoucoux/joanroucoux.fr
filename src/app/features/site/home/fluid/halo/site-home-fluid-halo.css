@@ -1,0 +1,34 @@
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 46% at 90% 16%, rgb(74 96 255 / 0.55), transparent 70%),
+    radial-gradient(36% 44% at 4% 62%, rgb(236 60 160 / 0.44), transparent 70%),
+    radial-gradient(34% 38% at 58% 104%, rgb(74 96 255 / 0.4), transparent 70%),
+    radial-gradient(26% 30% at 36% 30%, rgb(140 80 255 / 0.22), transparent 70%);
+}
+
+canvas {
+  display: none;
+  position: absolute;
+  left: 45%;
+  top: 45%;
+  width: 10%;
+  height: 10%;
+  transform: scale(13);
+  filter: blur(12px) saturate(1.2);
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+:host([data-fluid='live']) {
+  background: none;
+}
+
+:host([data-fluid='live']) canvas {
+  display: block;
+}

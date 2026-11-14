@@ -1,0 +1,42 @@
+:host {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--night);
+  pointer-events: none;
+}
+
+canvas {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 60px);
+  visibility: hidden;
+}
+
+:host([data-edge='1']) canvas {
+  top: 0;
+}
+
+:host([data-edge='-1']) canvas {
+  bottom: 0;
+}
+
+:host([data-fluid='live']) {
+  background: none;
+}
+
+:host([data-fluid='live'][data-edge='1']) {
+  bottom: -60px;
+}
+
+:host([data-fluid='live'][data-edge='-1']) {
+  top: -60px;
+}
+
+:host([data-fluid='live']) canvas {
+  height: 100%;
+  visibility: visible;
+}

@@ -8,3 +8,15 @@
   max-width: 100%;
   margin-inline: auto;
 }
+
+.ft.on {
+  color: transparent;
+}
+
+.ft canvas {
+  position: absolute;
+  inset: -0.2em 0;
+  width: 100%;
+  height: calc(100% + 0.4em);
+  pointer-events: none;
+}
