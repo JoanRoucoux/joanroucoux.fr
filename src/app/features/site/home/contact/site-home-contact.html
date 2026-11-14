@@ -1,0 +1,28 @@
+<div class="contact">
+  <app-site-home-fluid-backdrop [edge]="-1" />
+  <div class="scrim"></div>
+  <div class="c-inner">
+    <h2 class="display">{{ 'site.home.contact.title' | transloco }}</h2>
+    <p class="role">{{ 'site.home.contact.question' | transloco }}</p>
+    <p class="cta">
+      <a class="btn white" [href]="'mailto:' + links.email">{{ links.email }}</a>
+      <a class="btn glass-d" rel="noopener" target="_blank" [href]="links.linkedin">
+        {{ 'site.home.contact.linkedin' | transloco }}
+        <app-site-home-external-icon />
+      </a>
+      <a class="btn glass-d" rel="noopener" target="_blank" [href]="links.github">
+        {{ 'site.home.contact.github' | transloco }}
+        <app-site-home-external-icon />
+      </a>
+      <a class="btn glass-d" rel="noopener" target="_blank" [href]="links.devto">
+        {{ 'site.home.contact.devto' | transloco }}
+        <app-site-home-external-icon />
+      </a>
+      <a class="btn glass-d" rel="noopener" target="_blank" [href]="links.cv">
+        {{ 'site.home.contact.cv' | transloco }}
+        <app-site-home-external-icon />
+      </a>
+    </p>
+  </div>
+  <app-site-home-footer [lang]="lang()" />
+</div>

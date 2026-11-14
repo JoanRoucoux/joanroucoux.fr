@@ -59,4 +59,15 @@ describe('SiteHomePage', () => {
     ]);
     expect(screen.getByRole('main')).toContainElement(sections[0]!);
   });
+
+  it('should end with the contact block, which holds the only footer', async () => {
+    const { container } = await renderPage();
+
+    const contact = screen.getByTestId('contact');
+    expect(contact).toHaveAttribute('id', 'contact');
+    expect(container.lastElementChild).toBe(contact);
+    expect(screen.getByRole('main')).not.toContainElement(contact);
+    expect(screen.getAllByRole('contentinfo')).toHaveLength(1);
+    expect(contact).toContainElement(screen.getByRole('contentinfo'));
+  });
 });

@@ -269,6 +269,21 @@
         }
       }
     },
+    "contact": {
+      "title": "Parlons-en",
+      "question": "Une mission en Angular, en Java Spring Boot ou sur les deux ?",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "devto": "Dev.to",
+      "cv": "Télécharger le CV"
+    },
+    "footer": {
+      "skills": "Compétences",
+      "projects": "Projets",
+      "experiences": "Expériences",
+      "articles": "Articles",
+      "legal": "Mentions légales"
+    },
     "newTab": "(nouvel onglet)",
     "tech": {
       "hexagonal": "Architecture hexagonale",

@@ -1,0 +1,15 @@
+<footer class="foot glass-d">
+  <p class="who">
+    <b>Joan Roucoux</b>
+    <span>{{ 'site.home.hero.role' | transloco }}</span>
+  </p>
+  <p class="fnav">
+    @for (id of sections; track id) {
+      <a [fragment]="fragment(id)" [routerLink]="homeUrl()">{{ 'site.home.footer.' + id | transloco }}</a>
+    }
+  </p>
+  <p class="legal">
+    <span>JR Consulting, {{ year }}</span>
+    <a [routerLink]="legalUrl()">{{ 'site.home.footer.legal' | transloco }}</a>
+  </p>
+</footer>

@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 
 import { LanguageStore } from '@core/i18n/language-store';
 
-import { SiteFooter } from '../footer/site-footer';
 import { SiteHomeArticles } from './articles/site-home-articles';
 import { AVAILABILITY } from './availability';
 import { SiteHomeCertifications } from './certifications/site-home-certifications';
+import { SiteHomeContact } from './contact/site-home-contact';
 import { CAREER_START, fullYearsSince } from './experience-years';
 import { SiteHomeExperiences } from './experiences/site-home-experiences';
 import { SiteHomeFactSheet } from './fact-sheet/site-home-fact-sheet';
@@ -21,7 +21,7 @@ import { SiteHomeSkills } from './skills/site-home-skills';
 @Component({
   selector: 'app-site-home-page',
   imports: [
-    SiteFooter,
+    SiteHomeContact,
     SiteHomeArticles,
     SiteHomeCertifications,
     SiteHomeExperiences,

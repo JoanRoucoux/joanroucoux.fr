@@ -269,6 +269,21 @@
         }
       }
     },
+    "contact": {
+      "title": "Let’s talk",
+      "question": "An Angular or Java Spring Boot assignment, or both?",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "devto": "Dev.to",
+      "cv": "Download the CV"
+    },
+    "footer": {
+      "skills": "Skills",
+      "projects": "Projects",
+      "experiences": "Experience",
+      "articles": "Articles",
+      "legal": "Legal notice"
+    },
     "newTab": "(new tab)",
     "tech": {
       "hexagonal": "Hexagonal architecture",
