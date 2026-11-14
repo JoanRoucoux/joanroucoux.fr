@@ -1,0 +1,17 @@
+div {
+  gap: var(--lang-gap, 12px);
+}
+
+a {
+  text-decoration: var(--lang-link-decoration, underline);
+  padding: var(--lang-item-padding, 0);
+  border-radius: var(--lang-link-radius, 0);
+}
+
+a:hover {
+  background: var(--lang-link-hover, transparent);
+}
+
+span {
+  padding: var(--lang-item-padding, 0);
+}

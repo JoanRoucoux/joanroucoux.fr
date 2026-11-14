@@ -36,6 +36,13 @@
     }
   },
   "home": {
+    "nav": {
+      "label": "Page sections",
+      "skills": "Skills",
+      "projects": "Projects",
+      "experiences": "Experience",
+      "contact": "Contact"
+    },
     "newTab": "(new tab)",
     "tech": {
       "hexagonal": "Hexagonal architecture",

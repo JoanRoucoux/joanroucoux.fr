@@ -1,0 +1,6 @@
+<nav class="nav" [attr.aria-label]="'site.home.nav.label' | transloco">
+  @for (id of sections; track id) {
+    <a class="link" [fragment]="fragment(id)" [routerLink]="homeUrl()">{{ 'site.home.nav.' + id | transloco }}</a>
+  }
+  <app-lang-switch class="lang" page="home" [lang]="lang()" />
+</nav>

@@ -22,11 +22,11 @@ test('serves French at the root whatever the browser language, without cookies',
 test('switches to English through the language link', async ({ page }) => {
   await page.goto('/');
 
-  await page.getByRole('link', { name: 'English' }).click();
+  await page.getByRole('navigation').getByRole('link', { name: 'English' }).click();
 
   await expect(page).toHaveURL('/en');
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.getByRole('link', { name: 'Français' })).toHaveAttribute('href', '/');
+  await expect(page.getByRole('navigation').getByRole('link', { name: 'Français' })).toHaveAttribute('href', '/');
 });
 
 test('serves the legal notice routes in their language', async ({ page }) => {

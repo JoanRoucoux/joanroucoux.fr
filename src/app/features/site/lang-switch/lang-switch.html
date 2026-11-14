@@ -1,9 +1,12 @@
-<nav class="flex gap-3 text-sm" [attr.aria-label]="navLabel()">
+<div class="flex text-sm" role="group" [attr.aria-label]="groupLabel()">
   @for (code of langs; track code) {
     @if (code === lang()) {
-      <span aria-current="true" [attr.lang]="code">{{ labels[code] }}</span>
+      <span aria-current="true" [attr.lang]="code">{{ code.toUpperCase() }}</span>
     } @else {
-      <a class="underline" [attr.hreflang]="code" [attr.lang]="code" [routerLink]="url()">{{ labels[code] }}</a>
+      <a [attr.hreflang]="code" [attr.lang]="code" [routerLink]="url()"
+        ><span aria-hidden="true">{{ code.toUpperCase() }}</span
+        ><span class="sr-only">{{ labels[code] }}</span></a
+      >
     }
   }
-</nav>
+</div>

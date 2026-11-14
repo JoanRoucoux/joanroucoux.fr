@@ -36,6 +36,13 @@
     }
   },
   "home": {
+    "nav": {
+      "label": "Sections de la page",
+      "skills": "Compétences",
+      "projects": "Projets",
+      "experiences": "Expériences",
+      "contact": "Contact"
+    },
     "newTab": "(nouvel onglet)",
     "tech": {
       "hexagonal": "Architecture hexagonale",
