@@ -65,6 +65,68 @@
       "stack": "Stack principale",
       "stackValue": "Angular, Java, Spring Boot, Kafka"
     },
+    "skills": {
+      "title": "Compétences",
+      "lede": "Cerclées, les technologies au cœur de mes missions.",
+      "rows": {
+        "front": "Front",
+        "back": "Back",
+        "design": "Design",
+        "quality": "Qualité et livraison",
+        "ai": "IA appliquée",
+        "methods": "Méthodes"
+      }
+    },
+    "certifications": {
+      "title": "Certifications",
+      "lede": "Agilité à l’échelle, cloud et anglais.",
+      "verify": "Vérifier",
+      "items": {
+        "safe": {
+          "issuer": "Scaled Agile",
+          "title": "SAFe 6 Agilist",
+          "date": "Mai 2024"
+        },
+        "aws": {
+          "issuer": "Amazon Web Services",
+          "title": "AWS Cloud Practitioner",
+          "date": "Mars 2021"
+        },
+        "psm": {
+          "issuer": "Scrum.org",
+          "title": "Professional Scrum Master I",
+          "date": "Avril 2020"
+        },
+        "toeic": {
+          "issuer": "ETS",
+          "title": "TOEIC, 945 sur 990",
+          "date": "Anglais, niveau C2"
+        }
+      }
+    },
+    "articles": {
+      "title": "Articles",
+      "lede": "Des tutoriels publiés sur Dev.to, pour apprendre en expliquant.",
+      "read": "Lire",
+      "items": {
+        "subtitles": {
+          "date": "Janvier 2025",
+          "title": "Synchroniser des sous-titres avec React, React Hook Form et shadcn/ui"
+        },
+        "shortener": {
+          "date": "Novembre 2024",
+          "title": "Construire un raccourcisseur d’URL avec Node.js, en deux parties"
+        },
+        "readme": {
+          "date": "Septembre 2024",
+          "title": "Mettre à jour son README avec ses derniers articles"
+        },
+        "marvel": {
+          "date": "Juillet 2024",
+          "title": "Construire une application de recherche Marvel avec Qwik"
+        }
+      }
+    },
     "newTab": "(nouvel onglet)",
     "tech": {
       "hexagonal": "Architecture hexagonale",

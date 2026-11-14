@@ -1,0 +1,54 @@
+:host {
+  display: block;
+}
+
+.rows-card {
+  padding: var(--s1) var(--pad);
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rows > li {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr) auto;
+  gap: var(--s3);
+  align-items: center;
+  padding: var(--s3) 0;
+}
+
+.rows > li + li {
+  border-top: 1px solid var(--line);
+}
+
+h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+app-site-home-tech-list {
+  display: block;
+  margin-top: var(--s1);
+}
+
+.read {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-small);
+  font-weight: 600;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 2px;
+}
+
+@media (max-width: 900px) {
+  .rows > li {
+    grid-template-columns: 1fr;
+  }
+}

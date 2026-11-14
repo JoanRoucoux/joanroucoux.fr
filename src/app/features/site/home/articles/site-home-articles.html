@@ -1,0 +1,33 @@
+<app-site-home-section-head
+  [index]="4"
+  [lede]="'site.home.articles.lede' | transloco"
+  [title]="'site.home.articles.title' | transloco"
+/>
+<div class="card glass rows-card">
+  <ul class="rows">
+    @for (article of articles; track article.id) {
+      <li>
+        <span class="when">{{ 'site.home.articles.items.' + article.id + '.date' | transloco }}</span>
+        <div>
+          <h3 [id]="'article-title-' + article.id">
+            <a rel="noopener" target="_blank" [href]="article.url"
+              >{{ 'site.home.articles.items.' + article.id + '.title' | transloco }}
+              <span class="sr-only">{{ 'site.home.newTab' | transloco }}</span></a
+            >
+          </h3>
+          <app-site-home-tech-list size="sm" [techs]="article.techs" />
+        </div>
+        <a
+          class="read"
+          rel="noopener"
+          target="_blank"
+          [attr.aria-describedby]="'article-title-' + article.id"
+          [href]="article.url"
+        >
+          {{ 'site.home.articles.read' | transloco }}
+          <app-site-home-external-icon />
+        </a>
+      </li>
+    }
+  </ul>
+</div>

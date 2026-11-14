@@ -65,6 +65,68 @@
       "stack": "Main stack",
       "stackValue": "Angular, Java, Spring Boot, Kafka"
     },
+    "skills": {
+      "title": "Skills",
+      "lede": "Circled, the technologies at the heart of my work.",
+      "rows": {
+        "front": "Front",
+        "back": "Back",
+        "design": "Design",
+        "quality": "Quality and delivery",
+        "ai": "Applied AI",
+        "methods": "Methods"
+      }
+    },
+    "certifications": {
+      "title": "Certifications",
+      "lede": "Agile at scale, cloud and English.",
+      "verify": "Verify",
+      "items": {
+        "safe": {
+          "issuer": "Scaled Agile",
+          "title": "SAFe 6 Agilist",
+          "date": "May 2024"
+        },
+        "aws": {
+          "issuer": "Amazon Web Services",
+          "title": "AWS Cloud Practitioner",
+          "date": "March 2021"
+        },
+        "psm": {
+          "issuer": "Scrum.org",
+          "title": "Professional Scrum Master I",
+          "date": "April 2020"
+        },
+        "toeic": {
+          "issuer": "ETS",
+          "title": "TOEIC, 945 out of 990",
+          "date": "English, level C2"
+        }
+      }
+    },
+    "articles": {
+      "title": "Articles",
+      "lede": "Tutorials published on Dev.to, to learn by explaining.",
+      "read": "Read",
+      "items": {
+        "subtitles": {
+          "date": "January 2025",
+          "title": "Syncing subtitles with React, React Hook Form and shadcn/ui"
+        },
+        "shortener": {
+          "date": "November 2024",
+          "title": "Building a URL shortener with Node.js, in two parts"
+        },
+        "readme": {
+          "date": "September 2024",
+          "title": "Updating your README with your latest articles"
+        },
+        "marvel": {
+          "date": "July 2024",
+          "title": "Building a Marvel search application with Qwik"
+        }
+      }
+    },
     "newTab": "(new tab)",
     "tech": {
       "hexagonal": "Hexagonal architecture",

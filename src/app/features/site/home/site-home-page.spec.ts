@@ -45,4 +45,12 @@ describe('SiteHomePage', () => {
     expect(slot).toContainElement(screen.getByTestId('fact-sheet'));
     expect(screen.getByTestId('fact-sheet')).toHaveTextContent('site.home.facts.experienceValue');
   });
+
+  it('should mount skills, certifications and articles in the main landmark, in page order', async () => {
+    await renderPage();
+
+    const sections = screen.getAllByTestId('section');
+    expect(sections.map((section) => section.id)).toEqual(['skills', 'certifications', 'articles']);
+    expect(screen.getByRole('main')).toContainElement(sections[0]!);
+  });
 });

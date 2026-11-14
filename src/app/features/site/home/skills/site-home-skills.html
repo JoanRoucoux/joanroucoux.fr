@@ -1,0 +1,15 @@
+<app-site-home-section-head
+  [index]="0"
+  [lede]="'site.home.skills.lede' | transloco"
+  [title]="'site.home.skills.title' | transloco"
+/>
+<div class="card glass rows-card">
+  <ul class="rows">
+    @for (row of rows; track row.id) {
+      <li>
+        <h3 class="display">{{ 'site.home.skills.rows.' + row.id | transloco }}</h3>
+        <app-site-home-tech-list [markCore]="true" [techs]="row.techs" />
+      </li>
+    }
+  </ul>
+</div>

@@ -1,0 +1,37 @@
+:host {
+  display: block;
+}
+
+.rows-card {
+  padding: var(--s1) var(--pad);
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rows > li {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: var(--s3);
+  align-items: center;
+  padding: var(--s3) 0;
+}
+
+.rows > li + li {
+  border-top: 1px solid var(--line);
+}
+
+.rows h3 {
+  font-size: var(--t-h3);
+  line-height: 1;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .rows > li {
+    grid-template-columns: 1fr;
+  }
+}

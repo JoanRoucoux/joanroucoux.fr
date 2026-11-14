@@ -1,0 +1,29 @@
+<app-site-home-section-head
+  [index]="3"
+  [lede]="'site.home.certifications.lede' | transloco"
+  [title]="'site.home.certifications.title' | transloco"
+/>
+<div class="certs">
+  @for (cert of certifications; track cert.id) {
+    <article class="card glass cert">
+      <p class="k">{{ 'site.home.certifications.items.' + cert.id + '.issuer' | transloco }}</p>
+      <h3 class="display" [id]="'certification-title-' + cert.id">
+        {{ 'site.home.certifications.items.' + cert.id + '.title' | transloco }}
+      </h3>
+      <p class="b">
+        <span>{{ 'site.home.certifications.items.' + cert.id + '.date' | transloco }}</span>
+        @if (cert.verifyUrl) {
+          <a
+            rel="noopener"
+            target="_blank"
+            [attr.aria-describedby]="'certification-title-' + cert.id"
+            [href]="cert.verifyUrl"
+          >
+            {{ 'site.home.certifications.verify' | transloco }}
+            <app-site-home-external-icon />
+          </a>
+        }
+      </p>
+    </article>
+  }
+</div>

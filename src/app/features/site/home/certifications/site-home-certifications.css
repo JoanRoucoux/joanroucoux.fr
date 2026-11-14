@@ -1,0 +1,58 @@
+:host {
+  display: block;
+}
+
+.certs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.cert {
+  display: flex;
+  flex-direction: column;
+  min-height: 216px;
+  padding: var(--s3);
+}
+
+.cert p {
+  margin: 0;
+}
+
+.cert .k {
+  font-size: var(--t-small);
+  font-weight: 500;
+  color: var(--soft);
+}
+
+.cert h3 {
+  font-size: 24px;
+  margin: var(--s1) 0 0;
+}
+
+.cert .b {
+  margin-top: auto;
+  padding-top: var(--s2);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s1);
+  font-size: var(--t-small);
+}
+
+.cert .b span {
+  color: var(--soft);
+}
+
+.cert .b a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .certs {
+    grid-template-columns: 1fr 1fr;
+  }
+}
