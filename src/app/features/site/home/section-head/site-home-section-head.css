@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+.ft {
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+}

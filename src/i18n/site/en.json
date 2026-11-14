@@ -34,5 +34,15 @@
       "retention": "It is kept for 90 days at most.",
       "tracking": "No cookie and no tracking script is used."
     }
+  },
+  "home": {
+    "newTab": "(new tab)",
+    "tech": {
+      "hexagonal": "Hexagonal architecture",
+      "accessibility": "Accessibility",
+      "skillsMcp": "Skills and MCP servers",
+      "codeReview": "Code review",
+      "gdpr": "GDPR"
+    }
   }
 }

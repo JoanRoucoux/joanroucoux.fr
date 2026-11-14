@@ -1,0 +1,10 @@
+<ul class="techs" [class.sm]="size() === 'sm'">
+  @for (item of items(); track item.id) {
+    <li class="tech" [class.core]="item.core" [class.plain]="!item.icon">
+      @if (item.icon) {
+        <img alt="" height="17" loading="lazy" width="17" [src]="'/images/tech/' + item.icon + '.svg'" />
+      }
+      {{ item.label ?? ('site.home.tech.' + item.id | transloco) }}
+    </li>
+  }
+</ul>

@@ -34,5 +34,15 @@
       "retention": "Elles sont conservées 90 jours au plus.",
       "tracking": "Aucun cookie et aucun script de suivi ne sont utilisés."
     }
+  },
+  "home": {
+    "newTab": "(nouvel onglet)",
+    "tech": {
+      "hexagonal": "Architecture hexagonale",
+      "accessibility": "Accessibilité",
+      "skillsMcp": "Skills et serveurs MCP",
+      "codeReview": "Revue de code",
+      "gdpr": "RGPD"
+    }
   }
 }
