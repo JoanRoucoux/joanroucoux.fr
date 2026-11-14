@@ -1,10 +1,10 @@
 <app-site-home-fluid-halo />
 <app-site-home-nav [lang]="lang()" />
 <div class="top">
-  <div class="fiche-slot"></div>
+  <app-site-home-hero [availability]="availability" [lang]="lang()" />
+  <div class="fiche-slot">
+    <app-site-home-fact-sheet [availability]="availability" [years]="years" />
+  </div>
 </div>
-<main class="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 pt-24 text-center" id="main-content">
-  <h1 class="text-4xl font-black tracking-tight text-balance">{{ 'site.title' | transloco }}</h1>
-  <p class="max-w-xl text-lg text-(--muted-foreground)">{{ 'site.job' | transloco }}</p>
-</main>
+<main id="main-content"></main>
 <app-site-footer page="home" [lang]="lang()" />

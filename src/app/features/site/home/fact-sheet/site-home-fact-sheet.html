@@ -1,0 +1,18 @@
+<dl class="fiche glass" data-testid="fact-sheet">
+  <div>
+    <dt>{{ 'site.home.facts.' + missionKey() | transloco }}</dt>
+    <dd>{{ 'site.home.facts.' + missionKey() + 'Value' | transloco }}</dd>
+  </div>
+  <div>
+    <dt>{{ 'site.home.facts.experience' | transloco }}</dt>
+    <dd>{{ 'site.home.facts.experienceValue' | transloco: { years: years() } }}</dd>
+  </div>
+  <div>
+    <dt>{{ 'site.home.facts.location' | transloco }}</dt>
+    <dd>{{ 'site.home.facts.locationValue' | transloco }}</dd>
+  </div>
+  <div>
+    <dt>{{ 'site.home.facts.stack' | transloco }}</dt>
+    <dd>{{ 'site.home.facts.stackValue' | transloco }}</dd>
+  </div>
+</dl>

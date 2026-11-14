@@ -1,6 +1,4 @@
 {
-  "title": "Joan Roucoux",
-  "job": "Freelance full stack developer",
   "footer": {
     "legal": "Legal notice"
   },
@@ -42,6 +40,30 @@
       "projects": "Projects",
       "experiences": "Experience",
       "contact": "Contact"
+    },
+    "hero": {
+      "badge": {
+        "available": "Available for a mission",
+        "mission": "On a mission, next availability to be confirmed",
+        "missionUntil": "On a mission until {{date}}",
+        "from": "Available from {{date}}"
+      },
+      "role": "Senior full stack developer, freelance",
+      "pitch": "I design and deliver banking applications in Angular and Java Spring Boot. Today at Caisse des Dépôts, after almost seven years at Société Générale.",
+      "write": "Write to me",
+      "cv": "Download my CV"
+    },
+    "facts": {
+      "currentMission": "Current mission",
+      "currentMissionValue": "Caisse des Dépôts, since June 2025",
+      "lastMission": "Last mission",
+      "lastMissionValue": "Caisse des Dépôts, online bank",
+      "experience": "Experience",
+      "experienceValue": "{{years}} years, in banking",
+      "location": "Location",
+      "locationValue": "Paris, remote work possible",
+      "stack": "Main stack",
+      "stackValue": "Angular, Java, Spring Boot, Kafka"
     },
     "newTab": "(new tab)",
     "tech": {

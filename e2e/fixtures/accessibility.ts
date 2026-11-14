@@ -2,6 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { type Page, expect } from '@playwright/test';
 
 export const expectNoAccessibilityViolations = async (page: Page): Promise<void> => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   const { violations } = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
     .analyze();

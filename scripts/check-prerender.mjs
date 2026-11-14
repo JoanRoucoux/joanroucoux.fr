@@ -38,8 +38,8 @@ const english = read('en/index.html');
 expectIncludes('en/index.html', english, '<html lang="en"');
 expectIncludes('en/index.html', english, '<title>Joan Roucoux, freelance full stack developer</title>');
 
-expectIncludes('index.html', home, 'Développeur full stack freelance');
-expectIncludes('en/index.html', english, 'Freelance full stack developer');
+expectIncludes('index.html', home, 'Développeur full stack senior, freelance');
+expectIncludes('en/index.html', english, 'Senior full stack developer, freelance');
 
 for (const image of ['social/og-fr.png', 'social/og-en.png']) {
   if (!existsSync(join(root, image))) fail(`${image} is missing`);

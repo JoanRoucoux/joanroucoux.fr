@@ -1,0 +1,19 @@
+<header class="stage" data-testid="stage">
+  <app-site-home-fluid-backdrop [edge]="1" />
+  <div class="scrim"></div>
+  <div class="hero">
+    <p class="badge glass-d" [attr.data-tone]="badge().tone">
+      <i class="dot"></i><span>{{ badge().key | transloco: { date: badge().date } }}</span>
+    </p>
+    <h1 class="display">Joan Roucoux</h1>
+    <p class="role">{{ 'site.home.hero.role' | transloco }}</p>
+    <p class="pitch">{{ 'site.home.hero.pitch' | transloco }}</p>
+    <p class="cta">
+      <a class="btn white" [fragment]="contact()" [routerLink]="homeUrl()">{{ 'site.home.hero.write' | transloco }}</a>
+      <a class="btn glass-d" rel="noopener" target="_blank" [href]="cv">
+        {{ 'site.home.hero.cv' | transloco }}
+        <app-site-home-external-icon />
+      </a>
+    </p>
+  </div>
+</header>

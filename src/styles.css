@@ -75,6 +75,13 @@
   --primary-foreground: #fff;
 }
 
+@media (max-width: 900px) {
+  :root {
+    --sec: var(--s7);
+    --fh: 236px;
+  }
+}
+
 @layer base {
   html {
     scrollbar-gutter: stable;
