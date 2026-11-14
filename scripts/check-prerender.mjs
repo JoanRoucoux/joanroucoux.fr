@@ -70,6 +70,12 @@ for (const file of htmlFiles(root)) {
   const html = readFileSync(file, 'utf8');
   const name = file.slice(root.length + 1);
   if (html.includes('[[')) fail(`${name} contains an unresolved [[`);
+  const untranslated = html.match(/(>\s*|=")site\.[a-z][\w.]*/);
+  if (untranslated) fail(`${name} contains an untranslated key (${untranslated[0].replace(/^(>\s*|=")/, '')})`);
+  if (html.includes('https://www.google.com/')) fail(`${name} contains a temporary link`);
+  for (const [, source] of html.matchAll(/\ssrc="(\/images\/[^"]*)"/g)) {
+    if (!existsSync(join(root, source.split(/[?#]/)[0]))) fail(`${name} references a missing image (${source})`);
+  }
   for (const host of ['fonts.googleapis.com', 'fonts.gstatic.com']) {
     if (html.includes(host)) fail(`${name} references ${host}`);
   }

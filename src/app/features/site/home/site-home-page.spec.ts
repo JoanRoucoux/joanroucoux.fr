@@ -6,11 +6,11 @@ import { render, screen } from '@testing-library/angular';
 
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing';
 
-import { SitePage } from './site-page';
+import { SiteHomePage } from './site-home-page';
 
-describe('SitePage', () => {
+describe('SiteHomePage', () => {
   it('should render the page heading', async () => {
-    await render(SitePage, {
+    await render(SiteHomePage, {
       imports: [getTranslocoTestingModule()],
       providers: [provideZonelessChangeDetection(), provideRouter([]), provideTranslocoScope('site')],
     });

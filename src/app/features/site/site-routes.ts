@@ -7,8 +7,8 @@ import { preloadScope } from '@core/i18n/preload-scope';
 import { type SiteLang, type SitePageKey } from '@core/i18n/site-lang';
 
 import { SITE_PATHS } from './contract/site-paths';
+import { SiteHomePage } from './home/site-home-page';
 import { LegalPage } from './legal/legal-page';
-import { SitePage } from './site-page';
 
 const pageRoute = (path: string, lang: SiteLang, page: SitePageKey, component: Route['component']): Route => ({
   path,
@@ -22,8 +22,8 @@ export const SITE_ROUTES: Routes = [
     path: '',
     providers: [provideTranslocoScope('site')],
     children: [
-      pageRoute(SITE_PATHS.home.fr, 'fr', 'home', SitePage),
-      pageRoute(SITE_PATHS.home.en, 'en', 'home', SitePage),
+      pageRoute(SITE_PATHS.home.fr, 'fr', 'home', SiteHomePage),
+      pageRoute(SITE_PATHS.home.en, 'en', 'home', SiteHomePage),
       pageRoute(SITE_PATHS.legal.fr, 'fr', 'legal', LegalPage),
       pageRoute(SITE_PATHS.legal.en, 'en', 'legal', LegalPage),
     ],
