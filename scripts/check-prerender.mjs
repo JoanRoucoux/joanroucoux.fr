@@ -31,15 +31,37 @@ const htmlFiles = (dir) =>
 
 const home = read('index.html');
 expectIncludes('index.html', home, '<html lang="fr"');
-expectIncludes('index.html', home, '<title>Joan Roucoux, développeur full stack freelance</title>');
+expectIncludes('index.html', home, '<title>Joan Roucoux, développeur full stack senior freelance</title>');
 if (!/<h1[^>]*>\s*Joan Roucoux\s*<\/h1>/.test(home)) fail('index.html has no h1 "Joan Roucoux"');
 
 const english = read('en/index.html');
 expectIncludes('en/index.html', english, '<html lang="en"');
-expectIncludes('en/index.html', english, '<title>Joan Roucoux, freelance full stack developer</title>');
+expectIncludes('en/index.html', english, '<title>Joan Roucoux, freelance senior full stack developer</title>');
 
 expectIncludes('index.html', home, 'Développeur full stack senior, freelance');
 expectIncludes('en/index.html', english, 'Senior full stack developer, freelance');
+
+const sections = {
+  fr: ['competences', 'projets', 'experiences', 'certifications', 'articles', 'contact'],
+  en: ['skills', 'projects', 'experience', 'certifications', 'articles', 'contact'],
+};
+const hiddenCard = { fr: 'Raccourcisseur d’URL', en: 'URL shortener' };
+
+for (const [path, html, lang] of [
+  ['index.html', home, 'fr'],
+  ['en/index.html', english, 'en'],
+]) {
+  const flat = html.match(/data-fluid="flat"/g)?.length ?? 0;
+  if (flat !== 3) fail(`${path} has ${flat} data-fluid="flat", expected 3`);
+  for (const [, attributes] of html.matchAll(/<h2\b([^>]*)>/g)) {
+    if (/\bclass="[^"]*\bon\b[^"]*"/.test(attributes)) fail(`${path} has an h2 drawn as on (${attributes.trim()})`);
+  }
+  for (const id of sections[lang]) {
+    if (!new RegExp(`\\sid="${id}"`).test(html)) fail(`${path} has no element with id "${id}"`);
+  }
+  const card = new RegExp(`<h3[^>]*\\sid="project-title-shortener"[^>]*>\\s*${hiddenCard[lang]}\\s*</h3>`);
+  if (!card.test(html)) fail(`${path} has no hidden project card titled "${hiddenCard[lang]}"`);
+}
 
 for (const image of ['social/og-fr.png', 'social/og-en.png']) {
   if (!existsSync(join(root, image))) fail(`${image} is missing`);
