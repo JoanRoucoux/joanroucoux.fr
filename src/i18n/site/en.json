@@ -43,9 +43,9 @@
     },
     "hero": {
       "badge": {
-        "available": "Available for a mission",
-        "mission": "On a mission, next availability to be confirmed",
-        "missionUntil": "On a mission until {{date}}",
+        "available": "Available for new assignments",
+        "mission": "On assignment, next availability to be confirmed",
+        "missionUntil": "On assignment until {{date}}",
         "from": "Available from {{date}}"
       },
       "role": "Senior full stack developer, freelance",
@@ -54,20 +54,20 @@
       "cv": "Download my CV"
     },
     "facts": {
-      "currentMission": "Current mission",
+      "currentMission": "Current assignment",
       "currentMissionValue": "Caisse des Dépôts, since June 2025",
-      "lastMission": "Last mission",
+      "lastMission": "Last assignment",
       "lastMissionValue": "Caisse des Dépôts, online bank",
       "experience": "Experience",
       "experienceValue": "{{years}} years, in banking",
       "location": "Location",
-      "locationValue": "Paris, remote work possible",
+      "locationValue": "Paris, open to remote work",
       "stack": "Main stack",
       "stackValue": "Angular, Java, Spring Boot, Kafka"
     },
     "skills": {
       "title": "Skills",
-      "lede": "Circled, the technologies at the heart of my work.",
+      "lede": "The circled technologies are the core of my work.",
       "rows": {
         "front": "Front",
         "back": "Back",
@@ -79,7 +79,7 @@
     },
     "projects": {
       "title": "Projects",
-      "lede": "What I build outside assignments, from the code to production.",
+      "lede": "What I build outside client work, from code to production.",
       "more": "Show more projects",
       "code": "View the code",
       "cairn": {
@@ -98,16 +98,16 @@
         },
         "alt": {
           "dashboard": {
-            "desktop": "Cairn Portfolio screen on desktop: the overview of the wealth and its accounts",
-            "mobile": "Cairn Portfolio screen on mobile: the overview of the wealth and its accounts"
+            "desktop": "Cairn Portfolio screen on desktop: overview of total wealth and accounts",
+            "mobile": "Cairn Portfolio screen on mobile: overview of total wealth and accounts"
           },
           "allocation": {
-            "desktop": "Cairn Allocation screen on desktop: how the wealth is split between its investments",
-            "mobile": "Cairn Allocation screen on mobile: how the wealth is split between its investments"
+            "desktop": "Cairn Allocation screen on desktop: how total wealth is split across investments",
+            "mobile": "Cairn Allocation screen on mobile: how total wealth is split across investments"
           },
           "holding": {
-            "desktop": "Cairn Holding detail screen on desktop: the information about one investment",
-            "mobile": "Cairn Holding detail screen on mobile: the information about one investment"
+            "desktop": "Cairn Holding detail screen on desktop: details of a single investment",
+            "mobile": "Cairn Holding detail screen on mobile: details of a single investment"
           }
         }
       },
@@ -157,7 +157,7 @@
             },
             "2": {
               "value": "9",
-              "label": "developers at most per team"
+              "label": "developers per team at most"
             }
           }
         },
@@ -167,7 +167,7 @@
           "when": "2022 to 2025, Val de Fontenay",
           "points": {
             "1": "Leading 2 to 3 developers: skills growth, code reviews, technical roadmaps aligned with business priorities.",
-            "2": "PIN code view, online card activation, bulk ordering of business cards, card design change.",
+            "2": "PIN viewing, online card activation, bulk ordering of business cards, card design change.",
             "3": "Migrations from Backbone to React and from WildFly to Spring Boot."
           },
           "details": {
@@ -242,7 +242,7 @@
         "toeic": {
           "issuer": "ETS",
           "title": "TOEIC, 945 out of 990",
-          "date": "English, level C2"
+          "date": "English, C2 level"
         }
       }
     },
@@ -275,7 +275,7 @@
       "linkedin": "LinkedIn",
       "github": "GitHub",
       "devto": "Dev.to",
-      "cv": "Download the CV"
+      "cv": "Download my CV"
     },
     "footer": {
       "skills": "Skills",
