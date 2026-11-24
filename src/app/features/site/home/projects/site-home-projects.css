@@ -167,3 +167,23 @@ app-site-home-tech-list {
     padding: var(--s3) var(--s3) 0;
   }
 }
+
+@media (max-width: 600px) {
+  .screens {
+    padding-left: var(--s3);
+  }
+
+  .tabs {
+    display: flex;
+    max-width: calc(100% - var(--s3));
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs button {
+    flex: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}

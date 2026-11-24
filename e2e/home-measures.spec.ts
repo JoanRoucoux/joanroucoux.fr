@@ -68,19 +68,20 @@ test.describe('desktop', () => {
 });
 
 for (const [width, height] of [
+  [768, 1024],
   [390, 844],
   [320, 640],
 ]) {
-  test.describe(`phone ${width}px`, () => {
+  test.describe(`touch ${width}px`, () => {
     test.use({ viewport: { width, height }, isMobile: true, hasTouch: true });
 
     for (const path of ['/', '/en']) {
-      test(`has no overflow and the fact sheet on the hero edge on ${path}`, async ({ page }) => {
+      test(`has no overflow, the fact sheet on the hero edge and the mobile gaps on ${path}`, async ({ page }) => {
         await open(page, path);
 
         expect(await clientWidth(page)).toBe(width);
-        const { over, sheetY } = await page.evaluate(measure);
-        expect({ over, sheetY }).toEqual({ over: 0, sheetY: 0 });
+        const { over, sheetY, gaps } = await page.evaluate(measure);
+        expect({ over, sheetY, gaps }).toEqual({ over: 0, sheetY: 0, gaps: [96, 96, 96, 96, 96, 96] });
       });
     }
   });

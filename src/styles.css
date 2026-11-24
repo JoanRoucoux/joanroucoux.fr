@@ -75,10 +75,21 @@
   --primary-foreground: #fff;
 }
 
+@media (max-width: 1000px) {
+  :root {
+    --fh: 236px;
+  }
+}
+
 @media (max-width: 900px) {
   :root {
     --sec: var(--s7);
-    --fh: 236px;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --fh: 264px;
   }
 }
 

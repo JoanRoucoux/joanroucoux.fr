@@ -51,7 +51,7 @@ dd {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .fiche {
     grid-template-columns: 1fr 1fr;
   }
@@ -62,5 +62,20 @@ dd {
 
   .fiche div:nth-child(n + 3) {
     border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 760px) {
+  .fiche div {
+    padding: var(--s2);
+  }
+
+  dt {
+    font-size: 13px;
+  }
+
+  dd {
+    font-size: 16px;
+    margin-top: 4px;
   }
 }

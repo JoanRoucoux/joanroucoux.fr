@@ -56,3 +56,13 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+@media (max-width: 520px) {
+  .certs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cert {
+    min-height: 0;
+  }
+}

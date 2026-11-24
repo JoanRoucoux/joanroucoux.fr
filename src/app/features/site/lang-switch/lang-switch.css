@@ -12,6 +12,6 @@ a:hover {
   background: var(--lang-link-hover, transparent);
 }
 
-span {
+div > span {
   padding: var(--lang-item-padding, 0);
 }
