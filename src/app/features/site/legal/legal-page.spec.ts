@@ -54,11 +54,14 @@ describe('LegalPage', () => {
     expect(screen.getByText(host)).toBeInTheDocument();
   });
 
-  it.each(['fr', 'en'] as const)('should show the company placeholders in %s', async (lang) => {
+  it.each([
+    ['fr', 'Société par actions simplifiée (SAS)', '1 000 €'],
+    ['en', 'Simplified joint-stock company (SAS)', '€1,000'],
+  ] as const)('should show the publisher company in %s', async (lang, form, capital) => {
     await renderLegal(lang);
 
-    for (const placeholder of ['[[RAISON_SOCIALE]]', '[[FORME]]', '[[CAPITAL]]', '[[SIEGE]]', '[[RCS]]']) {
-      expect(screen.getByText(placeholder)).toBeInTheDocument();
+    for (const value of ['JR CONSULTING', form, capital, '14 rue Bausset, 75015 Paris', 'Paris 992 182 626']) {
+      expect(screen.getByText(value)).toBeInTheDocument();
     }
   });
 
