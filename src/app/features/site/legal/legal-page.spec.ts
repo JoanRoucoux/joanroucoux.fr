@@ -55,12 +55,12 @@ describe('LegalPage', () => {
   });
 
   it.each([
-    ['fr', 'Société par actions simplifiée (SAS)'],
-    ['en', 'Simplified joint-stock company (SAS)'],
-  ] as const)('should show the publisher company in %s', async (lang, form) => {
+    ['fr', 'Société par actions simplifiée (SAS)', '1 000 €'],
+    ['en', 'Simplified joint-stock company (SAS)', '€1,000'],
+  ] as const)('should show the publisher company in %s', async (lang, form, capital) => {
     await renderLegal(lang);
 
-    for (const value of ['JR CONSULTING', form, '[[CAPITAL]]', '14 rue Bausset, 75015 Paris', 'Paris 992 182 626']) {
+    for (const value of ['JR CONSULTING', form, capital, '14 rue Bausset, 75015 Paris', 'Paris 992 182 626']) {
       expect(screen.getByText(value)).toBeInTheDocument();
     }
   });
