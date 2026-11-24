@@ -24,9 +24,8 @@ export const HOME_LINKS = {
     marvel: 'https://dev.to/joanroucoux/building-a-marvel-search-application-with-qwik-ll7',
   },
   certifications: {
-    safe: TEMPORARY_LINK,
-    aws: TEMPORARY_LINK,
-    psm: TEMPORARY_LINK,
+    safe: 'https://www.credly.com/badges/7b2ea63c-efd3-4d3c-bdbf-e05430d1dcee',
+    aws: 'https://www.credly.com/badges/913d05ed-2c20-42a2-bcfa-33fb38cebb6d',
   },
 } satisfies {
   email: string;
@@ -37,5 +36,5 @@ export const HOME_LINKS = {
   cairn: { back: string; front: string; storybook: string };
   projects: Record<'starters' | 'infra' | 'shortener' | 'subtitles', string>;
   articles: Record<'subtitles' | 'shortener' | 'readme' | 'marvel', string>;
-  certifications: Record<'safe' | 'aws' | 'psm', string>;
+  certifications: Record<'safe' | 'aws', string>;
 };

@@ -11,7 +11,7 @@ describe('HOME_LINKS', () => {
     expect(targets(external).filter((target) => !target.startsWith('https://'))).toEqual([]);
   });
 
-  it('should keep the CV and the certifications on the temporary link until their targets exist', () => {
-    expect([HOME_LINKS.cv, ...Object.values(HOME_LINKS.certifications)]).toEqual(Array(4).fill(TEMPORARY_LINK));
+  it('should keep the CV on the temporary link until its target exists', () => {
+    expect(HOME_LINKS.cv).toBe(TEMPORARY_LINK);
   });
 });

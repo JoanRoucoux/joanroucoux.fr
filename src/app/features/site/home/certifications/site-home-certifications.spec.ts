@@ -8,6 +8,7 @@ import { getTranslocoTestingModule } from '@shared/testing/transloco-testing';
 
 import { FluidAtlas } from '../fluid/fluid-atlas';
 import { FluidLoop } from '../fluid/fluid-loop';
+import { HOME_LINKS } from '../site-home-links';
 import { SiteHomeCertifications } from './site-home-certifications';
 
 describe('SiteHomeCertifications', () => {
@@ -39,11 +40,14 @@ describe('SiteHomeCertifications', () => {
     expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(4);
   });
 
-  it('should link three certifications to their verification in a new tab, not TOEIC', async () => {
+  it('should link SAFe and AWS to their Credly badge in a new tab, not PSM or TOEIC', async () => {
     await renderCertifications();
 
     const links = screen.getAllByRole('link', { name: 'site.home.certifications.verify site.home.newTab' });
-    expect(links).toHaveLength(3);
+    expect(links.map((link) => link.getAttribute('href'))).toEqual([
+      HOME_LINKS.certifications.safe,
+      HOME_LINKS.certifications.aws,
+    ]);
     links.forEach((link) => {
       expect(link).toHaveAttribute('target', '_blank');
       expect(link).toHaveAttribute('rel', 'noopener');
