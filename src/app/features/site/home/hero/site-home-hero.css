@@ -12,7 +12,7 @@
   position: absolute;
   inset: 24px 4% auto 4%;
   height: 640px;
-  background: radial-gradient(ellipse closest-side, rgb(4 4 22 / 0.8), rgb(4 4 22 / 0.42) 60%, transparent);
+  background: radial-gradient(ellipse closest-side, rgb(4 4 22 / 0.88), rgb(4 4 22 / 0.5) 60%, transparent);
 }
 
 .hero {
