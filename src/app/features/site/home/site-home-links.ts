@@ -1,11 +1,9 @@
-export const TEMPORARY_LINK = 'https://www.google.com/';
-
 export const HOME_LINKS = {
   email: 'joan.roucoux@gmail.com',
   linkedin: 'https://www.linkedin.com/in/joanroucoux/',
   github: 'https://github.com/JoanRoucoux',
   devto: 'https://dev.to/joanroucoux',
-  cv: TEMPORARY_LINK,
+  cv: '/cv/joan-roucoux.pdf',
   cairn: {
     back: 'https://github.com/JoanRoucoux/cairn',
     front: 'https://github.com/JoanRoucoux/cairn-web',
